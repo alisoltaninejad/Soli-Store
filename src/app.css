@@ -1,54 +1,62 @@
-:root{
-  --bg-desktop: url('../images/bg.jpg') ;
+:root {
+  --bg-desktop: url('../images/bg.jpg');
 
 }
+
 @font-face {
   font-family: "Dana";
   font-weight: 400;
   font-display: swap;
-  src:("../public/fonts/Dana.ttf") format("ttf");
+  src: url("../public/fonts/Dana.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "Dana Medium";
   font-weight: 500;
   font-display: swap;
-  src: url("../public/fonts/Dana-Medium.ttf") format("ttf");
+  src: url("../public/fonts/Dana-Medium.ttf") format("truetype");
 }
+
 @font-face {
   font-family: "Dana DemiBold";
   font-weight: 600;
   font-display: swap;
-  src: url("../public/fonts/Dana-DemiBold.ttf") format("ttf");
-}
-@font-face {
-  font-family: "Morabba Light";
-  font-weight: 100;
-  font-display: swap;
-  src: url("../public/fonts/Morabba.ttf") format("ttf");
-}
-@font-face {
-  font-family: "Morabba Medium";
-  font-weight: 300;
-  font-display: swap;
-  src: url("../public/fonts/Morabba.ttf") format("ttf");
-}
-@font-face {
-  font-family: "Morabba Bold";
-  font-weight: 900;
-  font-display: swap;
-  src: url("../public/fonts/Morabba.ttf") format("ttf");
+  src: url("../public/fonts/Dana-DemiBold.ttf") format("truetype");
 }
 
-.container{
-  @apply  mx-auto px-4 md:px-2;
+@font-face {
+  font-family: "Alibaba Light";
+  font-weight: 100;
+  font-display: swap;
+  src: url("../public/fonts/Alibaba-Light.otf") format("opentype");
 }
-.clippath{
-  clip-path:polygon(100% 0%, 0% 0%, 0% 96%, 50% 100%, 100% 96%);
+
+@font-face {
+  font-family: "Alibaba Medium";
+  font-weight: 300;
+  font-display: swap;
+  src: url("../public/fonts/Alibaba-Regular.otf") format("opentype");
 }
-.submenu{
+
+@font-face {
+  font-family: "Alibaba Bold";
+  font-weight: 900;
+  font-display: swap;
+  src: url("../public/fonts/Alibaba-Bold.otf") format("opentype");
+}
+
+.container {
+  @apply mx-auto px-4 md:px-2;
+}
+
+.clippath {
+  clip-path: polygon(100% 0%, 0% 0%, 0% 96%, 50% 100%, 100% 96%);
+}
+
+.submenu {
   @apply pr-7 child:p-0.5 text-zinc-600 dark:text-white overflow-hidden max-h-0 opacity-0 transition-all duration-300 ease-in-out;
 }
 
-.submenu--open{
-  @apply  max-h-44 opacity-100 mt-2;
+.submenu--open {
+  @apply max-h-44 opacity-100 mt-2;
 }

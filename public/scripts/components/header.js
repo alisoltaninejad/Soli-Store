@@ -64,10 +64,13 @@ export default class Header {
 
   applyTheme() {
     const html = document.documentElement;
+    const themeBtn = document.getElementById("themeBtn");
     if (this.theme === "dark") {
       html.classList.add("dark");
+      themeBtn.innerHTML=`<svg class="h-8 w-8"><use href="#sun"></use></svg>`
     } else {
       html.classList.remove("dark");
+      themeBtn.innerHTML=`<svg class="h-8 w-8"><use href="#moon"></use></svg>`
     }
   }
 
@@ -96,8 +99,9 @@ export default class Header {
     let cartContainer = document.createElement("div");
     cartContainer.id = "cartDropdown";
     cartContainer.className = `
-      absolute top-full left-0 mt-2 w-96 bg-white dark:bg-slate-800 text-black dark:text-white
-      rounded-xl shadow-lg p-4 z-50 border-t-[3px] border-t-violet-300
+      absolute top-full left-0 mt-2 w-96 bg-white 
+      rounded-xl shadow-lg p-4 z-50 border-t-[3px] 
+      border-t-violet-300 bg-white text-slate-700 dark:bg-slate-700 dark:text-gray-300
       opacity-0 invisible transition-all duration-200  
       group-hover:opacity-100 group-hover:visible
     `;
