@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@import "./app.css";
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant child (& > *);
+@custom-variant child-hover (& > *:hover);
+
+@theme {
+    --color-brown-100: #ECE0D1;
+    --color-brown-300: #DBC1AC;
+    --color-brown-600: #967259;
+    --color-brown-900: #634832;
+
+    --shadow-custom: 0px 1px 10px rgba(0, 0, 0, 0.05);
+    
+    --font-Dana: "Dana";
+    --font-DanaDemiBold: "Dana DemiBold";
+    --font-DanaMedium: "Dana Medium";
+    --font-MorabbaLight: "Morabba Light";
+    --font-MorabbaMedium: "Morabba Medium";
+    --font-MorabbaBold: "Morabba Bold";
+
+    --tracking-tightest: -0.065em;
+
+    --spacing-32:8rem;
+   
+    --breakpoint-xs: 480px;
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+
+}
