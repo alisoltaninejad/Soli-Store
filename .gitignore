@@ -28,5 +28,6 @@ yarn-error.log*
 # output from tailwind or custom builds
 public/styles/output.css
 
+
 # optional: compiled typescript
 *.tsbuildinfo
