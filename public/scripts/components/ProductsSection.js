@@ -1,3 +1,6 @@
+import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2/+esm";
+import CartStore from "./CartStore.js";
+import Cart from "./Cart.js";
 export default class ProductsSection {
   constructor() {
     this.products = [];
@@ -19,6 +22,12 @@ export default class ProductsSection {
     } catch (err) {
       console.error("خطا در دریافت محصولات:", err);
       this.products = [];
+      return `<h2 class="flex items-center justify-center w-full h-36 text-4xl">
+      خطا در دریافت محصولات!
+       <svg class="w-12 h-12 m-3">
+              <use href="#cart"></use>
+            </svg>
+      <h2>`;
     }
 
     // 👇 بررسی عرض صفحه برای تعیین تعداد محصولات
@@ -36,7 +45,7 @@ export default class ProductsSection {
             جدیدترین محصولات<br> 
             <span class="text-sm">با بهترین کیفیت</span>
           </h2>
-          <a href="./shop.html" class="flex items-center justify-between text-violet-300">
+          <a href="#" class="flex items-center justify-between text-violet-300">
             مشاهده همه محصولات
             <svg class="w-4 h-4">
               <use href="#arrow-left"></use>
@@ -56,8 +65,10 @@ export default class ProductsSection {
 
   renderProductCard(product) {
     return `
-      <div class="flex flex-col text-slate-700 dark:text-white bg-indigo-200 dark:bg-slate-600 rounded-2xl  h-full min-h-[360px] max-w-[280px] p-0.5 md:p-2">
-        <img src="${product.thumbnail}" alt="${
+      <div class="product flex flex-col text-slate-700 dark:text-white bg-indigo-200 dark:bg-slate-600 rounded-2xl  h-full min-h-[360px] max-w-[280px] p-0.5 md:p-2" data-id="${
+        product.id
+      }">
+        <img src="${product.thumbnail || "./images/default.png"}" alt="${
       product.title
     }" class="min-w-[200px] min-h-[170px] m-auto object-contain">
         <div class="flex flex-col justify-between  p-4 space-y-3 text-center">
@@ -65,21 +76,95 @@ export default class ProductsSection {
             product.title
           }</h4>
           <div class="w-[100%] flex  items-end justify-between mx-auto md:px-3">
-            <div class="text-slate-700 dark:text-white font-DanaDemiBold">
-              <span>${product.price.toLocaleString("fa-IR")}</span>
-              <span class="font-Dana text-xs">تومان</span>
+            <div class="flex flex-col items-start  text-slate-700 dark:text-white font-DanaDemiBold">
+            ${
+              product.discountPercentage > 0
+                ? `<span class="line-through decoration-1 decoration-red-500 text-xs">
+                  ${product.price.toLocaleString(
+                    "fa-IR"
+                  )} <span class="font-Dana">تومان</span>
+                </span>`
+                : ""
+            }
+              <span> ${(
+                product.price *
+                (1 - product.discountPercentage / 100)
+              ).toLocaleString("fa-IR")}
+            <span class="font-Dana text-xs">تومان</span>
+            </span>
             </div>
             <div>
-              <span class="text-green-500 dark:text-green-400 text-xs tracking-tighter">
-                موجود: ${product.stock} مورد
-              </span>
+       <span class="text-green-500 dark:text-green-400 text-xs tracking-tighter">
+        ${
+          product.discountPercentage > 0
+            ? product.discountPercentage.toLocaleString("fa-IR") + "٪"
+            : ""
+        }
+      </span>
+
             </div>
           </div>
-          <button class="flex items-center justify-center w-[100%] h-9 mt-auto text-gray-100 bg-indigo-500 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 rounded-xl hover:cursor-pointer">
+          <button class="addToCartBtn flex items-center justify-center w-[100%] h-9 mt-auto text-gray-100 bg-indigo-500 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 rounded-xl hover:cursor-pointer">
             افزودن به سبدخرید
           </button>
         </div>
       </div>
     `;
+  }
+  addEventlisteners() {
+    const addToCartBtns = document.querySelectorAll(".addToCartBtn");
+    addToCartBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const productID = e.target.closest(".product").dataset.id;
+        const product = this.products.find((p) => p.id === Number(productID));
+
+        if (!product) {
+          Swal.fire({
+            icon: "error",
+            title: "خطا",
+            text: "محصول مورد نظر یافت نشد یا مشکلی در افزودن رخ داده است.",
+            confirmButtonText: "باشه",
+            timer: 1250,
+            theme: localStorage.getItem("theme") === "dark" ? "dark" : "light",
+            showClass: {
+              popup: "animate__animated animate__bounceIn",
+            },
+            hideClass: {
+              popup: "animate__animated animate__bounceOut",
+            },
+          });
+          return;
+        }
+
+        // گرفتن سبد خرید فعلی از localStorage
+        const cart = CartStore.getItems();
+
+        // بررسی وجود محصول در سبد خرید
+        const existing = cart.find((item) => item.id === product.id);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          cart.push({ ...product, quantity: 1 });
+        }
+
+        // ذخیره‌سازی دوباره در localStorage
+        CartStore.setItems(cart);
+
+        Swal.fire({
+          icon: "success",
+          title: "محصول اضافه شد",
+          text: `${product.title}`,
+          timer: 1250,
+          theme: localStorage.getItem("theme") === "dark" ? "dark" : "light",
+          showConfirmButton: false,
+          showClass: {
+            popup: "animate__animated animate__bounceIn",
+          },
+          hideClass: {
+            popup: "animate__animated animate__bounceOut",
+          },
+        });
+      });
+    });
   }
 }

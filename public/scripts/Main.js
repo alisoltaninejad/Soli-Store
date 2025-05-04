@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       const productsHTML = await productsSection.render();
 
       main.innerHTML = homeHTML + productsHTML;
+
+      productsSection.addEventlisteners()
     } catch (error) {
       console.error('Error initializing components:', error);
     }

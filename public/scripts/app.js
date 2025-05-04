@@ -5,7 +5,5 @@ import MobileMenu from './components/MobileMenu.js';
 document.addEventListener('DOMContentLoaded', () => {
   new Header();
   new MobileMenu();
- 
   
 });
-
