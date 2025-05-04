@@ -1,22 +1,16 @@
-import HomeSection from './components/HomeSection.js';
-import ProductsSection from './components/ProductsSection.js';
+import { render, navigate } from './router.js';
+import App from './app.js';
 
-document.addEventListener('DOMContentLoaded', async () => {
-  const main = document.querySelector('#main');
+document.addEventListener('DOMContentLoaded', () => {
+  App(); // اضافه کردن کامپوننت های مشترک
 
-  if (main) {
-    try {
-      const homeSection = new HomeSection();
-      const productsSection = new ProductsSection();
+  render(); // بارگذاری صفحه مطابق مسیر فعلی
 
-      const homeHTML = homeSection.render();
-      const productsHTML = await productsSection.render();
-
-      main.innerHTML = homeHTML + productsHTML;
-
-      productsSection.addEventlisteners()
-    } catch (error) {
-      console.error('Error initializing components:', error);
+  // هندل کردن لینک‌های داخلی
+  document.body.addEventListener('click', (e) => {
+    if (e.target.matches('[data-link]')) {
+      e.preventDefault();
+      navigate(e.target.href);
     }
-  }
+  });
 });

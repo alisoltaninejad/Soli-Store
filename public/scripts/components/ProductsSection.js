@@ -1,6 +1,5 @@
 import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2/+esm";
 import CartStore from "./CartStore.js";
-import Cart from "./Cart.js";
 export default class ProductsSection {
   constructor() {
     this.products = [];
@@ -45,12 +44,12 @@ export default class ProductsSection {
             جدیدترین محصولات<br> 
             <span class="text-sm">با بهترین کیفیت</span>
           </h2>
-          <a href="#" class="flex items-center justify-between text-violet-300">
+          <ahref="/shop" data-link class="flex items-center justify-between text-violet-300">
             مشاهده همه محصولات
             <svg class="w-4 h-4">
               <use href="#arrow-left"></use>
             </svg>
-          </a>
+          </ahref=>
         </div>
        <section class="products mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-10">
         ${this.products

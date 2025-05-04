@@ -1,9 +1,7 @@
-import Header from './components/header.js';
+import Header from './components/Header.js';
 import MobileMenu from './components/MobileMenu.js';
 
-
-document.addEventListener('DOMContentLoaded', () => {
+export default function App() {
   new Header();
   new MobileMenu();
-  
-});
+}
