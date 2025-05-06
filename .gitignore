@@ -26,7 +26,7 @@ yarn-error.log*
 .idea/
 
 # output from tailwind or custom builds
-public/sttyles/output.css
+public/styles/output.css
 
 # optional: compiled typescript
 *.tsbuildinfo

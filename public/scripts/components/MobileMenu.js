@@ -1,13 +1,23 @@
+import AuthManager from "./AuthManager.js";
 export default class MobileMenu {
   constructor() {
     this.topbarTarget = document.querySelector("#mobileTopBar");
     this.menuTarget = document.querySelector("#mobileMenu");
+  
     this.render();
     this.cacheElements();
+  
+    this.auth = new AuthManager(
+      () => this.updateLoginBtn(),
+      () => this.getTheme()
+    );
+  
+    this.updateLoginBtn();
+  
     this.bindEvents();
-    this.themeBtnHandler()
+    this.themeBtnHandler();
   }
-
+  
   render() {
     this.topbarTarget.innerHTML = `
       <div class="flex md:hidden items-center justify-between bg-white dark:bg-zinc-700 px-4 h-16">
@@ -75,8 +85,8 @@ export default class MobileMenu {
             <li><a href="#"><svg class="w-5 h-5 inline-block"><use href="#phone-arrow-up-righ"></use></svg> تماس با ما</a></li>
           </ul>
         </div>
-        <div class="w-[90%] flex flex-col items-start pt-3 mt-6 px-2.5 space-y-4 text-violet-300 border-t border-t-gray-300 dark:border-t-white/10">
-          <a href="#"><svg class="w-5 h-5 inline-block"><use href="#arrow-right-start-on-rectangle"></use></svg> ورود | ثبت نام</a>
+        <div class="w-[90%] flex flex-col items-start pt-3 mt-6 px-2.5 space-y-4  text-violet-300 border-t border-t-gray-300 dark:border-t-white/10">
+          <button class='mobileRegBtn text-right'><svg class="w-5 h-5 inline-block"><use href="#arrow-right-start-on-rectangle"></use></svg> ورود | ثبت نام</button>
           <button id="mobileThemeBtn"></button>
           <a href="#"><svg class="w-5 h-5 inline-block"><use href="#cart"></use></svg> سبد خرید</a>
         </div>
@@ -99,6 +109,15 @@ export default class MobileMenu {
     this.overlay?.addEventListener("click", () => this.closeMenu());
     this.closeBtn?.addEventListener("click", () => this.closeMenu());
     this.submenuBtn?.addEventListener("click", () => this.toggleSubmenu());
+
+    document.querySelector(".mobileRegBtn")?.addEventListener("click", () => {
+      if (this.auth.isLoggedIn()) {
+        this.auth.logOut();
+      } else {
+        this.auth.showRegisterForm();
+      }
+    });
+    
   }
 
   openMenu() {
@@ -146,5 +165,17 @@ export default class MobileMenu {
             </svg>
             <span class="inline-block dark:hidden">تم تیره</span>`;
     }
+  }
+  updateLoginBtn() {
+    const btn = document.querySelector(".mobileRegBtn");
+    const { username } = this.auth.getUserInfo();
+    if (!btn) return;
+
+    btn.innerHTML = this.auth.isLoggedIn()
+      ? `<svg class="h-4 w-4  inline-block"><use href="#arrow-right-start-on-rectangle"></use></svg><span>سلام خوش آمدی ${username}</span>`
+      : `<svg class="h-4 w-4  inline-block"><use href="#arrow-right-start-on-rectangle"></use></svg><span>ورود | ثبت نام</span>`;
+  }
+  getTheme() {
+    return localStorage.getItem("theme") === "dark" ? "dark" : "light";
   }
 }

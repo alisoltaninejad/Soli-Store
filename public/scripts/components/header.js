@@ -1,13 +1,21 @@
 import Cart from "./Cart.js";
 import CartStore from "./CartStore.js";
+import AuthManager from "./AuthManager.js";
 export default class Header {
   constructor() {
-    const cartCount = CartStore.getCount();
+    this.cartCount = CartStore.getCount();
     this.theme = localStorage.getItem("theme") || "light";
+
+    this.auth = new AuthManager(
+      () => this.updateLoginBtn(),
+      () => this.getTheme()
+    );
+
     this.render();
     this.applyTheme();
     this.addEventListeners();
-    const cartInstance = new Cart();
+    this.updateLoginBtn();
+    new Cart();
   }
 
   render() {
@@ -54,10 +62,8 @@ export default class Header {
               </div>
             </div>
             <span class="block w-px h-14 bg-white/20"></span>
-            <a href="#" class="flex items-center gap-x-2.5 tracking-tightest">
-              <svg class="h-8 w-8"><use href="#arrow-right-start-on-rectangle"></use></svg>
-              <span class="hidden xl:inline-block">ورود | ثبت نام</span>
-            </a>
+            <button  class="registerBtn flex items-center gap-x-2.5 tracking-tightest hover:cursor-pointer">
+            </button>
           </div>
         </div>
       </header>
@@ -81,9 +87,30 @@ export default class Header {
     localStorage.setItem("theme", this.theme);
     this.applyTheme();
   }
+  
 
   addEventListeners() {
-    const themeBtn = document.getElementById("themeBtn");
-    themeBtn.addEventListener("click", () => this.toggleTheme());
+    document
+      .getElementById("themeBtn")
+      ?.addEventListener("click", () => this.toggleTheme());
+    document.querySelector(".registerBtn")?.addEventListener("click", () => {
+      if (this.auth.isLoggedIn()) {
+        this.auth.logOut();
+      } else {
+        this.auth.showRegisterForm();
+      }
+    });
+  }
+  updateLoginBtn() {
+    const btn = document.querySelector(".registerBtn");
+    const { username } = this.auth.getUserInfo();
+    if (!btn) return;
+
+    btn.innerHTML = this.auth.isLoggedIn()
+      ? `<svg class="h-8 w-8 hidden xl:inline-block"><use href="#arrow-right-start-on-rectangle"></use></svg><span>${username}</span>`
+      : `<svg class="h-8 w-8 hidden xl:inline-block"><use href="#arrow-right-start-on-rectangle"></use></svg><span>ورود | ثبت نام</span>`;
+  }
+  getTheme() {
+    return localStorage.getItem("theme") === "dark" ? "dark" : "light";
   }
 }
