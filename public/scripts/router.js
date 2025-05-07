@@ -9,6 +9,7 @@ import NotFound from "./pages/404.js";
 const routes = {
   "/": HomePage,
   "/public/": HomePage,
+  "/public/index.html": HomePage,
   "/shop": ShopPage,
   "/blog": BlogPage,
   "/about": AboutPage,

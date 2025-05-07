@@ -16,7 +16,7 @@ export default class ProductsSection {
         laptopRes.json(),
         tabletRes.json(),
       ]);
-
+     
       this.products = [...laptopData.products, ...tabletData.products];
     } catch (err) {
       console.error("خطا در دریافت محصولات:", err);
@@ -38,18 +38,18 @@ export default class ProductsSection {
     }
 
     return `
-      <div class="container mx-auto mt-20 px-4 md:px-2">
+      <div class="container mt-20">
         <div class="text-slate-700 dark:text-white flex items-end justify-between">
           <h2 class="font-AlibabaLight text-xl md:text-3xl">
             جدیدترین محصولات<br> 
             <span class="text-sm">با بهترین کیفیت</span>
           </h2>
-          <ahref="/shop" data-link class="flex items-center justify-between text-violet-300">
+          <a href="/shop" data-link class="flex items-center justify-between text-violet-300">
             مشاهده همه محصولات
             <svg class="w-4 h-4">
               <use href="#arrow-left"></use>
             </svg>
-          </ahref=>
+          </a>
         </div>
        <section class="products mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-10">
         ${this.products

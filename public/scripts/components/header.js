@@ -20,7 +20,7 @@ export default class Header {
 
   render() {
     document.getElementById("header-root").innerHTML = `
-      <header class="fixed top-9 right-0 left-0 z-50 mx-auto w-[98%] lg:w-[90%] h-24 hidden md:flex items-center px-5 lg:px-10 bg-black/70 rounded-3xl backdrop-blur-[6px] shadow-custom text-violet-200">
+      <div class="fixed top-9 right-0 left-0 z-50 mx-auto w-[98%] lg:w-[90%] h-24 hidden md:flex items-center px-5 lg:px-10 bg-black/70 rounded-3xl backdrop-blur-[6px] shadow-custom text-violet-200">
         <div class="flex items-center justify-between w-full">
           <nav class="flex h-14 items-center gap-x-9 ">
             <a href="/" data-link class="w-32 h-32">
@@ -66,7 +66,7 @@ export default class Header {
             </button>
           </div>
         </div>
-      </header>
+      </div>
     `;
   }
 
