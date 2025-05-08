@@ -5,12 +5,12 @@ export default class Footer {
   }
   render() {
     document.getElementById("footer-root").innerHTML = `
-            <section class=" relative mt-20 bg-zinc-700 text-gray-300 pt-10 px-20">
+            <section class=" relative mt-20 bg-zinc-700 text-gray-300 pt-10 px-20 shadow-2xl shadow-gray-800 ">
         <div id='scrollBtn' class=" absolute -top-3 right-0 left-0 w-fit m-auto text-gray-50 bg-violet-600 rounded-full p-1 shadow-2xl cursor-pointer hover:bg-violet-700">
             <svg class="size-6"><use href="#arrow-up"></use></svg>
         </div>
-        <div class="grid grid-cols-3 items-start justify-between py-8 child:p-5">
-            <div class="flex flex-col items-start justify-evenly">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  items-center justify-between py-8 child:p-5">
+            <div class="flex flex-col items-center lg:items-start justify-evenly shrink md:col-span-2 lg:col-span-1 text-center lg:text-right">
                 <img src="images/logo-type.png" class="w-fit mb-3" alt="logo">
                 <p>
                     هدف ما این هست که با اراِئه بهترین محصولات دیجیتال بیشترین سطح رضایت از تجربه خود را داشته باشید و
@@ -39,10 +39,10 @@ export default class Footer {
                 <h3 class="font-AlibabaBold text-xl mb-3">در تماس باشیم</h3>
                 <div class="flex flex-col items-start gap-1.5">
                     <div class="flex items-center gap-1">
-                        <svg class="size-5"><use href="#briefcase"></use></svg>
+                        <svg class="size-5 shrink-0"><use href="#map-pin"></use></svg>
                         جهان کره زمین همین حوالی در کرمان ایران دیار کریمان
                     </div>
-                    <div class="flex items-center justify-start gap-10">
+                    <div class="flex items-center justify-start gap-2 sm:gap-10 w-full">
                         <div class="flex items-center gap-1">
                             <svg class="size-5"><use href="#chat-bubble"></use></svg>
                             info@support.com
@@ -53,18 +53,20 @@ export default class Footer {
                         </div>
                     </div>
                 </div>
-                <div class="flex items-center justify-between mt-6">
-                    <div class="basis-[44%] h-8 text-center leading-8 rounded-lg bg bg-indigo-500 ">
-                        alisolinejad@
-                    </div>
-                    <div class="basis-[44%] h-8 text-center leading-8 rounded-lg bg border border-violet-400">
-                        alisolinejad@
-                    </div>
+             <div class="flex items-center justify-between gap-3 mt-6">
+                <div class=" shrink flex items-center gap-2 justify-center basis-[40%] h-8 px-1 text-center rounded-lg border bg-indigo-500 cursor-pointer transition-all hover:bg-transparent">
+                    <svg class="size-5"><use href="#telegram"></use></svg>
+                    <span>alisolinejad@</span>
+                </div>
+                <div class=" shrink flex items-center gap-2 justify-center basis-[40%] h-8 px-1 text-center rounded-lg border bg-violet-600 cursor-pointer transition-all hover:bg-transparent">
+                    <svg class="size-5"><use href="#instagram"></use></svg>
+                    <span>alisolinejad@</span>
+                </div>
                 </div>
             </div>
         </div>
         <hr class="bg-gray-500 my-2">
-        <div class="flex items-center justify-between py-4">
+        <div class="flex flex-col md:flex-row items-center justify-between py-4">
             <p>تمامی حقوق متعلق به سازنده <span class="text-violet-400">علی سلطانی</span> میباشد</p>
             <span>copyright © made by <span class="text-violet-400">Ali Soltani</span>, all rights reserved</span>
         </div>

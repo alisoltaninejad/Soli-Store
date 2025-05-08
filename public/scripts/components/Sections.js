@@ -19,21 +19,21 @@ export default class Sections {
         </div>
 
         <!-- categories -->
-        <div class="grid gap-14 grid-cols-2 md:grid-cols-4 items-center justify-center">
+        <div class="grid gap-14 grid-cols-2 md:grid-cols-4 items-center justify-center dark:text-white">
           <figure>
-            <a href=""><img src="./images/category-man-watches.png" class="rounded-full shadow-xl bg-blue-200" alt="category"></a>
+            <a href=""><img src="./images/category-man-watches.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-blue-200" alt="category"></a>
             <figcaption class="block text-lg md:text-xl text-center mt-6">ساعت</figcaption>
           </figure>
           <figure>
-            <a href=""><img src="./images/category-mobile-accessories.jpg" class="rounded-full shadow-xl" alt="category"></a>
+            <a href=""><img src="./images/category-mobile-accessories.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
             <figcaption class="block text-lg md:text-xl text-center mt-6">لوازم جانبی</figcaption>
           </figure>
           <figure>
-            <a href=""><img src="./images/category-laptops.jpg" class="rounded-full shadow-xl" alt="category"></a>
+            <a href=""><img src="./images/category-laptops.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
             <figcaption class="block text-lg md:text-xl text-center mt-6">لپ تاپ</figcaption>
           </figure>
           <figure>
-            <a href=""><img src="./images/category-tablets.png" class="rounded-full shadow-xl bg-violet-200" alt="category"></a>
+            <a href=""><img src="./images/category-tablets.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-violet-200" alt="category"></a>
             <figcaption class="block text-lg md:text-xl text-center mt-6">تبلت و موبایل</figcaption>
           </figure>
         </div>
@@ -42,7 +42,7 @@ export default class Sections {
         ${blogHTML}
 
         <!-- call order -->
-        <div class="flex flex-col md:flex-row">
+        <div class="flex flex-col md:flex-row dark:text-white">
           <div class="basis-[30%] rounded-xs overflow-hidden">
             <img src="images/category-smaartphone.jpg" class="h-full w-full" alt="smartphone">
           </div>
@@ -51,19 +51,19 @@ export default class Sections {
             <p class="inline-flex leading-8 md:leading-10 text-md lg:text-xl mt-4 text-justify">
               بهترین محصولات و لوازم دیجیتال را از ما بخواهید هر آنچه که مربوط به حوزه تکنولوژی هست با بهترین کیفیت در خدمت شماست
             </p>
-            <a href="" class="inline-flex w-fit text-green-700 border border-green-900 transition-all hover:bg-green-900 hover:border-green-700 hover:text-white py-1 px-4 my-2 rounded-l-full font-AlibabaLight">
+            <a href="" class="inline-flex w-fit text-green-700 border-2 border-green-900 transition-all hover:bg-green-900  hover:border-green-700 dark:border-green-400 hover:text-white py-1 px-4 my-2 rounded-l-full font-AlibabaLight dark:text-green-200 dark:hover:text-green-300 ">
               سفارش تلفنی
             </a>
           </div>
         </div>
 
         <!-- widgets -->
-        <div class="flex flex-col sm:flex-row justify-evenly items-center gap-6">
-          <div class="w-full flex gap-4 items-center justify-baseline md:justify-center">
+        <div class="flex flex-col sm:flex-row justify-evenly items-center gap-6 ">
+          <div class="w-full flex gap-4 items-center justify-baseline md:justify-center dark:bg-gray-500 p-4 dark:text-white rounded-2xl">
             <img src="./images/svgs/express-delivery.svg" alt="delivery icon" class="size-14 lg:size-20">
             <h5>ارسال سریع به سراسر کشور</h5>
           </div>
-          <div class="w-full flex gap-4 items-center justify-baseline md:justify-center">
+          <div class="w-full flex gap-4 items-center justify-baseline md:justify-center dark:bg-gray-500 p-4 dark:text-white rounded-2xl">
             <img src="./images/svgs/support.svg" alt="support icon" class="size-14 lg:size-20">
             <h5>پشتیبانی 24 ساعته</h5>
           </div>

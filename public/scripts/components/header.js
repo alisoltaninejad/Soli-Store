@@ -31,12 +31,11 @@ export default class Header {
               <li class="relative group">
                 <a  href="/shop" data-link>فروشگاه</a>
                 <ul class="absolute top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible w-52 p-6 space-y-4 bg-white text-slate-700 dark:bg-slate-700 dark:text-gray-300 text-base tracking-normal shadow-custom rounded-2xl border-t-[3px] border-t-violet-300 transition-all delay-75 child:transition-colors child-hover:text-violet-300">
-                  <li><a href="/" data-link>کنسول‌های بازی</a></li>
-                  <li><a href="/" data-link>کامپیوترهای گیمینگ</a></li>
-                  <li><a href="/" data-link>لپ تاپ گیمینگ</a></li>
+                  <li><a href="/" data-link>لپ تاپ</a></li>
+                  <li><a href="/" data-link>تبلت</a></li>
+                  <li><a href="/" data-link>موبایل</a></li>
                   <li><a href="/" data-link>لوازم جانبی</a></li>
-                  <li><a href="/" data-link>مودم</a></li>
-                  <li><a href="/" data-link>سخت افزار</a></li>
+                  <li><a href="/" data-link>ساعت</a></li>
                 </ul>
               </li>
               <li><a href="/blog" data-link>بلاگ</a></li>
