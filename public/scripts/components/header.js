@@ -31,11 +31,11 @@ export default class Header {
               <li class="relative group">
                 <a  href="/shop" data-link>فروشگاه</a>
                 <ul class="absolute top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible w-52 p-6 space-y-4 bg-white text-slate-700 dark:bg-slate-700 dark:text-gray-300 text-base tracking-normal shadow-custom rounded-2xl border-t-[3px] border-t-violet-300 transition-all delay-75 child:transition-colors child-hover:text-violet-300">
-                  <li><a href="/" data-link>لپ تاپ</a></li>
-                  <li><a href="/" data-link>تبلت</a></li>
-                  <li><a href="/" data-link>موبایل</a></li>
-                  <li><a href="/" data-link>لوازم جانبی</a></li>
-                  <li><a href="/" data-link>ساعت</a></li>
+                  <li><a href="/Laptop" data-link>لپ تاپ</a></li>
+                  <li><a href="/Tablet" data-link>تبلت</a></li>
+                  <li><a href="/Mobile" data-link>موبایل</a></li>
+                  <li><a href="/DigitalAccessories" data-link>لوازم جانبی</a></li>
+                  <li><a href="/Watches" data-link>ساعت</a></li>
                 </ul>
               </li>
               <li><a href="/blog" data-link>بلاگ</a></li>
@@ -46,13 +46,13 @@ export default class Header {
           <div class="flex h-14 items-center gap-x-4 lg:gap-x-6 text-xl">
             <div class="flex h-full gap-x-3">
               <div class=" py-3 relative group" id="cartBtn">
-                <a href="/cart" data-link class="block hover:cursor-pointer">
+                <div  class="block">
                   <svg class="h-8 w-8"><use href="#cart"></use></svg>
                   <span id="cartBadge" class="absolute -top-1 -right-2 bg-violet-400 text-black text-xs px-1.5 py-0.5 rounded-full 
                   ${this.cartCount === 0 ? "hidden" : ""}">
                     ${this.cartCount}
                   </span>
-                </a>
+                </div>
               </div>
               <div class="py-3">
                 <div class="hover:cursor-pointer" id="themeBtn">
@@ -86,7 +86,6 @@ export default class Header {
     localStorage.setItem("theme", this.theme);
     this.applyTheme();
   }
-  
 
   addEventListeners() {
     document

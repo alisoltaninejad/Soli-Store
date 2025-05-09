@@ -21,19 +21,19 @@ export default class Sections {
         <!-- categories -->
         <div class="grid gap-14 grid-cols-2 md:grid-cols-4 items-center justify-center dark:text-white">
           <figure>
-            <a href=""><img src="./images/category-man-watches.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-blue-200" alt="category"></a>
+            <a  href="/Watches" data-link><img src="./images/category-man-watches.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-blue-200" alt="category"></a>
             <figcaption class="block text-lg md:text-xl text-center mt-6">ساعت</figcaption>
           </figure>
           <figure>
-            <a href=""><img src="./images/category-mobile-accessories.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
+            <a  href="/DigitalAccessories" data-link><img src="./images/category-mobile-accessories.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
             <figcaption class="block text-lg md:text-xl text-center mt-6">لوازم جانبی</figcaption>
           </figure>
           <figure>
-            <a href=""><img src="./images/category-laptops.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
+            <a href="/Laptop" data-link><img src="./images/category-laptops.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
             <figcaption class="block text-lg md:text-xl text-center mt-6">لپ تاپ</figcaption>
           </figure>
           <figure>
-            <a href=""><img src="./images/category-tablets.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-violet-200" alt="category"></a>
+            <a  href="/Mobile" data-link><img src="./images/category-tablets.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-violet-200" alt="category"></a>
             <figcaption class="block text-lg md:text-xl text-center mt-6">تبلت و موبایل</figcaption>
           </figure>
         </div>

@@ -42,10 +42,9 @@ export default class Cart {
             <!-- header -->
             <div class="flex items-center justify-between font-DanaMedium text-xs">
               <span class="text-gray-300 ">${CartStore.getCount()} مورد</span>
-              <ahref="/cart" data-link class="flex items-center justify-between text-violet-300">
-                مشاهده سبد خرید
-                <svg class="w-4 h-4"><use href="#arrow-left"></use></svg>
-              </ahref=>
+              <a class="flex items-center justify-between text-violet-300">
+                 سبد خرید
+              </a>
             </div>
     
             <!-- body -->

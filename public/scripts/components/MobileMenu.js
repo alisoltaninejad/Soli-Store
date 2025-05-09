@@ -20,31 +20,31 @@ export default class MobileMenu {
   
   render() {
     this.topbarTarget.innerHTML = `
-      <div class="flex md:hidden items-center justify-between bg-white dark:bg-zinc-700 px-4 h-16">
+      <div class=" fixed inset-0 top-0 flex md:hidden items-center justify-between bg-white dark:bg-zinc-700 px-4 h-16 z-20">
         <div id="mobile-menu-btn">
           <svg class="w-6 h-6 text-zinc-700 dark:text-white">
             <use href="#bars-3"></use>
           </svg>
         </div>
         <div>
-          <a href="#" class="block w-26 h-26">
+          <a href="/" data-link class="block w-26 h-26">
             <img src="images/logo.png" alt="digital store" class="h-fit w-fit">
           </a>
         </div>
-        <div id="mobile-cart-btn">
+        <button class="openCartBtn">
           <svg class="w-6 h-6 text-zinc-700 dark:text-white">
             <use href="#cart"></use>
           </svg>
-        </div>
+        </button>
       </div>
     `;
 
     this.menuTarget.innerHTML = `
-      <div class="mobile_menu fixed md:hidden top-0 translate-x-full flex flex-col h-full bg-white dark:bg-zinc-700 min-h-screen w-64 z-20 p-4 overflow-y-scroll transition-all delay-75">
+      <div class="mobile_menu fixed md:hidden top-0 translate-x-full flex flex-col h-full bg-white dark:bg-zinc-700 min-h-screen w-64 z-40 p-4 overflow-y-scroll transition-all delay-75">
         <div class="flex items-center justify-between pb-3 mb-6 border-b border-b-gray-300 dark:border-b-white/10">
-          <div>
+          <a href="/" data-link>
             <img src="images/fav-icon.png" class="w-20" alt="logo">
-          </div>
+          </a>
           <svg class="h-5 w-5 text-zinc-400 dark:text-white cursor-pointer" id="close-mobile-menu">
             <use href="#x-mark"></use>
           </svg>
@@ -52,14 +52,14 @@ export default class MobileMenu {
         <div>
           <ul class="text-zinc-600 dark:text-white space-y-2 child:p-1 child:pr-2.5 child:rounded-md">
             <li class="bg-violet-200/30 pr-0">
-              <a href="#" class="flex items-center gap-x-2">
+              <a href="/" data-link class="flex items-center gap-x-2">
                 <svg class="w-5 h-5 inline-block"><use href="#home"></use></svg>
                 صفحه اصلی
               </a>
             </li>
             <li>
               <div class="flex items-center justify-between">
-                <a href="#">
+                <a href="/shop" data-link>
                   <div class="flex items-center justify-between">
                     <div>
                       <svg class="w-5 h-5 inline-block"><use href="#cart"></use></svg>
@@ -72,26 +72,25 @@ export default class MobileMenu {
                 </span>
               </div>
               <ul class="submenu">
-                <li><a href="#">کنسول‌های بازی</a></li>
-                <li><a href="#">کامپیوترهای گیمینگ</a></li>
-                <li><a href="#">لپ تاپ گیمینگ</a></li>
-                <li><a href="#">لوازم جانبی</a></li>
-                <li><a href="#">مودم</a></li>
-                <li><a href="#">سخت افزار</a></li>
+                  <li><a href="/Laptop" data-link>لپ تاپ</a></li>
+                  <li><a href="/Tablet" data-link>تبلت</a></li>
+                  <li><a href="/Mobile" data-link>موبایل</a></li>
+                  <li><a href="/DigitalAccessories" data-link>لوازم جانبی</a></li>
+                  <li><a href="/Watches" data-link>ساعت</a></li>
               </ul>
             </li>
-            <li><a href="#"><svg class="w-5 h-5 inline-block"><use href="#document-text"></use></svg> بلاگ</a></li>
-            <li><a href="#"><svg class="w-5 h-5 inline-block"><use href="#briefcase"></use></svg> درباره ما</a></li>
-            <li><a href="#"><svg class="w-5 h-5 inline-block"><use href="#phone-arrow-up-righ"></use></svg> تماس با ما</a></li>
+            <li><a href="/blog" data-link><svg class="w-5 h-5 inline-block"><use href="#document-text"></use></svg> بلاگ</a></li>
+            <li><a href="/about" data-link><svg class="w-5 h-5 inline-block"><use href="#briefcase"></use></svg> درباره ما</a></li>
+            <li><a href="/contact" data-link><svg class="w-5 h-5 inline-block"><use href="#phone-arrow-up-righ"></use></svg> تماس با ما</a></li>
           </ul>
         </div>
         <div class="w-[90%] flex flex-col items-start pt-3 mt-6 px-2.5 space-y-4  text-violet-300 border-t border-t-gray-300 dark:border-t-white/10">
           <button class='mobileRegBtn text-right'><svg class="w-5 h-5 inline-block"><use href="#arrow-right-start-on-rectangle"></use></svg> ورود | ثبت نام</button>
           <button id="mobileThemeBtn"></button>
-          <a href="#"><svg class="w-5 h-5 inline-block"><use href="#cart"></use></svg> سبد خرید</a>
+          <button class='openCartBtn'><svg class="w-5 h-5 inline-block"><use href="#cart"></use></svg> سبد خرید</button>
         </div>
       </div>
-      <div class="overlay opacity-0 invisible md:hidden fixed inset-0 bg-black/40 z-10 transition-all delay-75" id="overlay"></div>
+      <div class="overlay opacity-0 invisible md:hidden fixed inset-0 bg-black/40 z-30 transition-all delay-75" id="overlay"></div>
     `;
   }
 
@@ -102,6 +101,8 @@ export default class MobileMenu {
     this.closeBtn = document.getElementById("close-mobile-menu");
     this.submenuBtn = document.getElementById("submenu_open_btn");
     this.submenu = this.menu.querySelector(".submenu");
+    this.themeButton = document.getElementById("mobileThemeBtn");
+    this.openCartBtns = this.menu.querySelector(".openCartBtn");
   }
 
   bindEvents() {
@@ -134,32 +135,32 @@ export default class MobileMenu {
     this.submenu.classList.toggle("submenu--open");
   }
   themeBtnHandler() {
-    const themeButton = document.getElementById("mobileThemeBtn");
+
     const currentTheme = localStorage.getItem("theme");
     const isDark = currentTheme === "dark";
 
     // تنظیم محتوای دکمه بر اساس تم
-    this.setThemeButtonContent(themeButton, isDark);
+    this.setThemeButtonContent(this.themeButton, isDark);
 
     // افزودن رویداد کلیک برای تغییر تم
-    themeButton.addEventListener("click", () => {
+    this.themeButton.addEventListener("click", () => {
       const newTheme = document.documentElement.classList.contains("dark")
         ? "light"
         : "dark";
       document.documentElement.classList.toggle("dark");
       localStorage.setItem("theme", newTheme);
-      this.setThemeButtonContent(themeButton, newTheme === "dark");
+      this.setThemeButtonContent(this.themeButton, newTheme === "dark");
     });
   }
-  setThemeButtonContent(themeButton, isDark) {
+  setThemeButtonContent(themeBtn, isDark) {
     if (isDark) {
-      themeButton.innerHTML = `
+      themeBtn.innerHTML = `
             <svg class="w-5 h-5 hidden dark:inline-block">
                 <use href="#sun"></use>
             </svg>
             <span class="hidden dark:inline-block">تم روشن</span>`;
     } else {
-      themeButton.innerHTML = `
+      themeBtn.innerHTML = `
             <svg class="w-5 h-5 inline-block dark:hidden">
                 <use href="#moon"></use>
             </svg>

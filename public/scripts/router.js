@@ -3,9 +3,13 @@ import ShopPage from "./pages/Shop.js";
 import BlogPage from "./pages/Blog.js";
 import AboutPage from "./pages/About.js";
 import ContactPage from "./pages/Contact.js";
-import CartPage from "./pages/Cart-Page.js";
 import NotFound from "./pages/404.js";
 
+import DigitalAccessories from "./pages/categories/Digital-accessories.js";
+import Laptop from "./pages/categories/Laptop.js";
+import Tablet from "./pages/categories/Tablet.js";
+import Mobile from "./pages/categories/Mobile.js";
+import Watches from "./pages/categories/Watches.js";
 const routes = {
   "/": HomePage,
   "/public/": HomePage,
@@ -14,7 +18,11 @@ const routes = {
   "/blog": BlogPage,
   "/about": AboutPage,
   "/contact": ContactPage,
-  "/cart": CartPage,
+  "/DigitalAccessories": DigitalAccessories,
+  "/Laptop": Laptop,
+  "/Tablet": Tablet,
+  "/Mobile": Mobile,
+  "/Watches": Watches,
 };
 
 export async function render() {
@@ -25,7 +33,7 @@ export async function render() {
   app.innerHTML = "";
 
   if (page) {
-    const content = await page();
+    const content = await Promise.resolve(page());
     app.appendChild(content);
   } else {
     const content = NotFound();

@@ -1,6 +1,6 @@
 import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2/+esm";
 export default class AuthManager {
-  constructor(updateUIFn, getThemeFn) {
+  constructor(updateUIFn = () => {}, getThemeFn = () => "light") {
     this.onAuthChange = updateUIFn;
     this.getTheme = getThemeFn;
   }

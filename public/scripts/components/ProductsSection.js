@@ -21,7 +21,7 @@ export default class ProductsSection {
     } catch (err) {
       console.error("خطا در دریافت محصولات:", err);
       this.products = [];
-      return `<h2 class="flex items-center justify-center w-full h-36 text-4xl">
+      return `<h2 class="flex items-center justify-center w-full h-36 text-4xl dark:text-gray-300">
       خطا در دریافت محصولات!
        <svg class="w-12 h-12 m-3">
               <use href="#cart"></use>

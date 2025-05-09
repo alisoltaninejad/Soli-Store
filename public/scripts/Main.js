@@ -8,9 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // هندل کردن لینک‌های داخلی
   document.body.addEventListener('click', (e) => {
-    if (e.target.matches('[data-link]')) {
+    const link = e.target.closest('[data-link]');
+    if (link) {
       e.preventDefault();
-      navigate(e.target.href);
+      navigate(link.getAttribute('href'));
     }
   });
+  
 });
