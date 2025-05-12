@@ -203,6 +203,7 @@ export default class Cart {
     CartStore.setItems(this.cartItems);
     this.cartItems = CartStore.getItems();
     this.renderCart();
-    this.updateCartBadge();
+    window.dispatchEvent(new Event("cartUpdated")); // آگاه کردن MobileMenu
+    
   }
 }

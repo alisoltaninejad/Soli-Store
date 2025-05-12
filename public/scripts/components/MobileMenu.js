@@ -1,23 +1,36 @@
 import AuthManager from "./AuthManager.js";
+import MobileCart from "./MobileCart.js";
+import CartStore from "./CartStore.js";
+
 export default class MobileMenu {
   constructor() {
+    // Bind متدها به instance
+    this.openMenu = this.openMenu.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
+    this.openCart = this.openCart.bind(this);
+    this.closeCart = this.closeCart.bind(this);
+    this.toggleSubmenu = this.toggleSubmenu.bind(this);
+  
+    //بروزرسانی ایکون سبد خرید
+    window.addEventListener("cartUpdated", () => this.updateCartBadge());
+    // ادامه‌ی constructor
     this.topbarTarget = document.querySelector("#mobileTopBar");
     this.menuTarget = document.querySelector("#mobileMenu");
-  
+    this.cart = new MobileCart();
     this.render();
     this.cacheElements();
-  
     this.auth = new AuthManager(
       () => this.updateLoginBtn(),
       () => this.getTheme()
     );
   
     this.updateLoginBtn();
-  
+    this.updateCartBadge()
     this.bindEvents();
     this.themeBtnHandler();
   }
   
+
   render() {
     this.topbarTarget.innerHTML = `
       <div class=" fixed inset-0 top-0 flex md:hidden items-center justify-between bg-white dark:bg-zinc-700 px-4 h-16 z-20">
@@ -31,10 +44,14 @@ export default class MobileMenu {
             <img src="images/logo.png" alt="digital store" class="h-fit w-fit">
           </a>
         </div>
-        <button class="openCartBtn">
+        <button class="openCartBtn relative">
           <svg class="w-6 h-6 text-zinc-700 dark:text-white">
             <use href="#cart"></use>
           </svg>
+           <span id="mobileCartBadge" class="absolute -top-2 -right-3 bg-violet-400 text-black text-xs px-1.5 py-0.5 rounded-full 
+            ${this.cartCount === 0 ? "hidden" : ""}">
+              ${this.cartCount}
+            </span>
         </button>
       </div>
     `;
@@ -102,15 +119,24 @@ export default class MobileMenu {
     this.submenuBtn = document.getElementById("submenu_open_btn");
     this.submenu = this.menu.querySelector(".submenu");
     this.themeButton = document.getElementById("mobileThemeBtn");
-    this.openCartBtns = this.menu.querySelector(".openCartBtn");
+    this.cartBox = document.querySelector(".cartBox");
+    this.openCartBtns = document.querySelectorAll(".openCartBtn");
+    this.closeCartBtn= document.querySelector("#close-cart-menu");
   }
 
-  bindEvents() {
-    this.menuBtn?.addEventListener("click", () => this.openMenu());
-    this.overlay?.addEventListener("click", () => this.closeMenu());
-    this.closeBtn?.addEventListener("click", () => this.closeMenu());
-    this.submenuBtn?.addEventListener("click", () => this.toggleSubmenu());
 
+  bindEvents() {
+    this.menuBtn?.addEventListener("click", this.openMenu);
+    this.overlay?.addEventListener("click", this.closeMenu);
+    this.closeBtn?.addEventListener("click", this.closeMenu);
+    this.submenuBtn?.addEventListener("click", this.toggleSubmenu);
+  
+    this.openCartBtns.forEach((btn) => {
+      btn.addEventListener("click", this.openCart);
+    });
+    this.closeCartBtn.addEventListener('click',this.closeCart)
+    this.overlay?.addEventListener("click", this.closeCart);
+  
     document.querySelector(".mobileRegBtn")?.addEventListener("click", () => {
       if (this.auth.isLoggedIn()) {
         this.auth.logOut();
@@ -118,24 +144,42 @@ export default class MobileMenu {
         this.auth.showRegisterForm();
       }
     });
-    
+    window.addEventListener("storage", () => {
+      this.cartItems = CartStore.getItems();
+      this.updateCartBadge();
+    });
   }
-
+  
   openMenu() {
     this.menu.classList.remove("translate-x-full");
     this.overlay.classList.remove("opacity-0", "invisible");
+    this.overlay.classList.add("opacity-100", "visible");
   }
-
+  
   closeMenu() {
     this.menu.classList.add("translate-x-full");
+    this.overlay.classList.remove("opacity-100", "visible");
     this.overlay.classList.add("opacity-0", "invisible");
   }
-
+  
+  openCart() {
+    this.cartBox.classList.add("left-0");
+    this.cartBox.classList.remove("-left-full");
+    this.overlay.classList.remove("opacity-0", "invisible");
+    this.overlay.classList.add("opacity-100", "visible");
+  }
+  
+  closeCart() {
+    this.cartBox.classList.remove("left-0");
+    this.cartBox.classList.add("-left-full");
+    this.overlay.classList.remove("opacity-100", "visible");
+    this.overlay.classList.add("opacity-0", "invisible");
+  }
+  
   toggleSubmenu() {
     this.submenu.classList.toggle("submenu--open");
   }
   themeBtnHandler() {
-
     const currentTheme = localStorage.getItem("theme");
     const isDark = currentTheme === "dark";
 
@@ -178,5 +222,15 @@ export default class MobileMenu {
   }
   getTheme() {
     return localStorage.getItem("theme") === "dark" ? "dark" : "light";
+  }
+  updateCartBadge() {
+    const cartBadge = document.getElementById("mobileCartBadge");
+    const count = CartStore.getCount();
+    if (count > 0) {
+      cartBadge.classList.remove("hidden");
+      cartBadge.textContent = count;
+    } else {
+      cartBadge.classList.add("hidden");
+    }
   }
 }

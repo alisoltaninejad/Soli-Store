@@ -5,7 +5,7 @@ export default class Footer {
   }
   render() {
     document.getElementById("footer-root").innerHTML = `
-            <section class=" relative inset-0 bottom-0 mt-20 bg-zinc-700 text-gray-300 pt-10 px-20 shadow-2xl shadow-gray-800 ">
+            <section class=" relative inset-0 bottom-0 mt-20 bg-zinc-700 text-gray-300 pt-4 md:pt-10 px-6 md:px-20 shadow-2xl shadow-gray-800 ">
         <div id='scrollBtn' class=" absolute -top-3 right-0 left-0 w-fit m-auto text-gray-50 bg-violet-600 rounded-full p-1 shadow-2xl cursor-pointer hover:bg-violet-700">
             <svg class="size-6"><use href="#arrow-up"></use></svg>
         </div>
