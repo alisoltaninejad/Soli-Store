@@ -121,7 +121,7 @@ export default class MobileMenu {
     this.themeButton = document.getElementById("mobileThemeBtn");
     this.cartBox = document.querySelector(".cartBox");
     this.openCartBtns = document.querySelectorAll(".openCartBtn");
-    this.closeCartBtn= document.querySelector("#close-cart-menu");
+    this.closeCartBtn= document.getElementById("close-cart-menu");
   }
 
 

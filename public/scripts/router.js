@@ -10,6 +10,7 @@ import Laptop from "./pages/categories/Laptop.js";
 import Tablet from "./pages/categories/Tablet.js";
 import Mobile from "./pages/categories/Mobile.js";
 import Watches from "./pages/categories/Watches.js";
+
 const routes = {
   "/": HomePage,
   "/public/": HomePage,
@@ -25,25 +26,46 @@ const routes = {
   "/Watches": Watches,
 };
 
+const app = document.getElementById("app");
+const loading = document.getElementById("loading"); // المان لودینگ (مثلاً <div id="loading">)
+
 export async function render() {
   const path = window.location.pathname;
   const page = routes[path];
-  
-  const app = document.getElementById("app");
+
+  // نمایش لودینگ
+  if (loading) loading.style.display = "flex";
   app.innerHTML = "";
 
-  if (page) {
-    const content = await Promise.resolve(page());
-    app.appendChild(content);
-  } else {
-    const content = NotFound();
-    app.appendChild(content);
+  try {
+    if (page) {
+      const content = await Promise.resolve(page());
+      if (content instanceof HTMLElement) {
+        app.appendChild(content);
+      } else {
+        app.innerHTML = content;
+      }
+    } else {
+      const content = NotFound();
+      if (content instanceof HTMLElement) {
+        app.appendChild(content);
+      } else {
+        app.innerHTML = content;
+      }
+    }
+  } catch (err) {
+    app.innerHTML = "<p>خطا در بارگذاری صفحه</p>";
+    console.error("Page load error:", err);
+  } finally {
+    // مخفی کردن لودینگ
+    if (loading) loading.style.display = "none";
   }
 }
+
 export function navigate(url) {
-  window.history.pushState({}, "", url); // تغییر آدرس بدون reload
-  render(); // نمایش محتوای جدید
+  window.history.pushState({}, "", url);
+  render();
 }
 
-// برای پشتیبانی از دکمه‌های back/forward مرورگر
+// پشتیبانی از back و forward مرورگر
 window.addEventListener("popstate", render);

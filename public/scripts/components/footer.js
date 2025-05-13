@@ -5,7 +5,7 @@ export default class Footer {
   }
   render() {
     document.getElementById("footer-root").innerHTML = `
-            <section class=" relative inset-0 bottom-0 mt-20 bg-zinc-700 text-gray-300 pt-4 md:pt-10 px-6 md:px-20 shadow-2xl shadow-gray-800 ">
+            <section class=" relative inset-0 bottom-0 mt-20 bg-zinc-700 text-gray-300 text-center md:text-right pt-4 md:pt-10 px-6 md:px-20 shadow-2xl shadow-gray-800 ">
         <div id='scrollBtn' class=" absolute -top-3 right-0 left-0 w-fit m-auto text-gray-50 bg-violet-600 rounded-full p-1 shadow-2xl cursor-pointer hover:bg-violet-700">
             <svg class="size-6"><use href="#arrow-up"></use></svg>
         </div>
@@ -38,11 +38,11 @@ export default class Footer {
             <div>
                 <h3 class="font-AlibabaBold text-xl mb-3">در تماس باشیم</h3>
                 <div class="flex flex-col items-start gap-1.5">
-                    <div class="flex items-center gap-1">
+                    <div class=" w-full flex items-center justify-center md:justify-start gap-1">
                         <svg class="size-5 shrink-0"><use href="#map-pin"></use></svg>
                         جهان کره زمین همین حوالی در کرمان ایران دیار کریمان
                     </div>
-                    <div class="flex items-center justify-start gap-2 sm:gap-10 w-full">
+                    <div class="flex items-center justify-center md:justify-start gap-2 sm:gap-10 w-full">
                         <div class="flex items-center gap-1">
                             <svg class="size-5"><use href="#chat-bubble"></use></svg>
                             info@support.com
@@ -53,7 +53,7 @@ export default class Footer {
                         </div>
                     </div>
                 </div>
-             <div class="flex items-center justify-between gap-3 mt-6">
+             <div class="flex items-center justify-center md:justify-between gap-3 mt-6">
                 <div class=" shrink flex items-center gap-2 justify-center basis-[40%] h-8 px-1 text-center rounded-lg border bg-indigo-500 cursor-pointer transition-all hover:bg-transparent">
                     <svg class="size-5"><use href="#telegram"></use></svg>
                     <span>alisolinejad@</span>
