@@ -84,16 +84,25 @@ export default class MobileMenu {
                     </div>
                   </div>
                 </a>
-                <span id="submenu_open_btn">
+                <span class="submenu-toggle cursor-pointer" data-target="#submenu-shop">
                   <svg class="w-5 h-5 inline-block hover:text-violet-400"><use href="#chevron-down"></use></svg>
                 </span>
               </div>
-              <ul class="submenu">
-                  <li><a href="/Laptop" data-link>لپ تاپ</a></li>
-                  <li><a href="/Tablet" data-link>تبلت</a></li>
-                  <li><a href="/Mobile" data-link>موبایل</a></li>
-                  <li><a href="/DigitalAccessories" data-link>لوازم جانبی</a></li>
-                  <li><a href="/Watches" data-link>ساعت</a></li>
+              <ul id="submenu-shop" class="submenu" >
+                <li><a href="/categories/laptops" data-link>لپ تاپ</a></li>
+                <li><a href="/categories/tablets" data-link>تبلت</a></li>
+                <li><a href="/categories/smartphones" data-link>موبایل</a></li>
+                <li>
+                  <div class="submenu-toggle cursor-pointer" data-target="#submenu-watches">
+                    <a>ساعت</a>
+                    <svg class="w-5 h-5 inline-block hover:text-violet-400"><use href="#chevron-down"></use></svg>
+                  </div>
+                  <ul id="submenu-watches" class="submenu bg-violet-500  rounded-xl ">
+                    <li><a href="/categories/mens-watches" data-link>مردانه</a></li>
+                    <li><a href="/categories/womens-watches" data-link>زنانه</a></li>
+                  </ul>
+                </li>
+                <li><a href="/categories/mobile-accessories" data-link>لوازم جانبی</a></li> 
               </ul>
             </li>
             <li><a href="/blog" data-link><svg class="w-5 h-5 inline-block"><use href="#document-text"></use></svg> بلاگ</a></li>
@@ -130,7 +139,7 @@ export default class MobileMenu {
     this.overlay?.addEventListener("click", this.closeMenu);
     this.closeBtn?.addEventListener("click", this.closeMenu);
     this.submenuBtn?.addEventListener("click", this.toggleSubmenu);
-  
+    document.querySelectorAll('.submenu-toggle').forEach(toggle => this.toggleSubmenu(toggle))
     this.openCartBtns.forEach((btn) => {
       btn.addEventListener("click", this.openCart);
     });
@@ -176,8 +185,14 @@ export default class MobileMenu {
     this.overlay.classList.add("opacity-0", "invisible");
   }
   
-  toggleSubmenu() {
-    this.submenu.classList.toggle("submenu--open");
+  toggleSubmenu(toggle) {
+      toggle.addEventListener('click', () => {
+        const targetSelector = toggle.getAttribute('data-target');
+        const submenu = document.querySelector(targetSelector);
+        if (submenu) {
+          submenu.classList.toggle('submenu--open');
+        }
+      });    
   }
   themeBtnHandler() {
     const currentTheme = localStorage.getItem("theme");

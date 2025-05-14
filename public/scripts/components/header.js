@@ -28,14 +28,20 @@ export default class Header {
             </a>
             <ul class="flex items-center h-14 gap-x-6 lg:gap-x-9 text-xl text-gray-300 tracking-tightest child:h-full child:leading-[56px] child:transition-colors child-hover:text-violet-300">
               <li class="font-DanaMedium text-violet-200"><a href="/" data-link>صفحه اصلی</a></li>
-              <li class="relative group">
+              <li class="relative group/menu">
                 <a  href="/shop" data-link>فروشگاه</a>
-                <ul class="absolute top-full opacity-0 invisible group-hover:opacity-100 group-hover:visible w-52 p-6 space-y-4 bg-white text-slate-700 dark:bg-slate-700 dark:text-gray-300 text-base tracking-normal shadow-custom rounded-2xl border-t-[3px] border-t-violet-300 transition-all delay-75 child:transition-colors child-hover:text-violet-300">
-                  <li><a href="/Laptop" data-link>لپ تاپ</a></li>
-                  <li><a href="/Tablet" data-link>تبلت</a></li>
-                  <li><a href="/Mobile" data-link>موبایل</a></li>
-                  <li><a href="/DigitalAccessories" data-link>لوازم جانبی</a></li>
-                  <li><a href="/Watches" data-link>ساعت</a></li>
+                <ul class="absolute top-full opacity-0 invisible group-hover/menu:opacity-100 group-hover/menu:visible w-52 p-6 space-y-4 bg-white text-slate-700 dark:bg-slate-700 dark:text-gray-300 text-base tracking-normal shadow-custom rounded-2xl border-t-[3px] border-t-violet-300 transition-all delay-75 child:transition-colors child-hover:text-violet-300">
+               <li><a href="/categories/laptops" data-link>لپ تاپ</a></li>
+                <li><a href="/categories/tablets" data-link>تبلت</a></li>
+                <li><a href="/categories/smartphones" data-link>موبایل</a></li>
+              <li class="relative group/submenu">
+                <a href="/categories/watches">ساعت</a>
+                <ul class="absolute top-full right-[20%] opacity-0 invisible group-hover/submenu:opacity-100 group-hover/submenu:visible w-52 p-6 space-y-4 bg-white text-slate-700 dark:bg-slate-700 dark:text-gray-300 text-base tracking-normal shadow-custom rounded-2xl border-t-[3px] border-t-violet-300 transition-all delay-75 child:transition-colors child-hover:text-violet-300 duration-200 z-50">
+                  <li><a href="/categories/mens-watches" data-link>مردانه</a></li>
+                  <li><a href="/categories/womens-watches" data-link>زنانه</a></li>
+                </ul>
+              </li>
+                <li><a href="/categories/mobile-accessories" data-link>لوازم جانبی</a></li> 
                 </ul>
               </li>
               <li><a href="/blog" data-link>بلاگ</a></li>

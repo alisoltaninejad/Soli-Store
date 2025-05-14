@@ -5,12 +5,9 @@ import AboutPage from "./pages/About.js";
 import ContactPage from "./pages/Contact.js";
 import NotFound from "./pages/404.js";
 
-import DigitalAccessories from "./pages/categories/Digital-accessories.js";
-import Laptop from "./pages/categories/Laptop.js";
-import Tablet from "./pages/categories/Tablet.js";
-import Mobile from "./pages/categories/Mobile.js";
-import Watches from "./pages/categories/Watches.js";
+import CategoryPage from "./pages/CategoryPage.js";
 
+// تعریف مسیرهای ثابت
 const routes = {
   "/": HomePage,
   "/public/": HomePage,
@@ -19,11 +16,6 @@ const routes = {
   "/blog": BlogPage,
   "/about": AboutPage,
   "/contact": ContactPage,
-  "/DigitalAccessories": DigitalAccessories,
-  "/Laptop": Laptop,
-  "/Tablet": Tablet,
-  "/Mobile": Mobile,
-  "/Watches": Watches,
 };
 
 const app = document.getElementById("app");
@@ -31,37 +23,65 @@ const loading = document.getElementById("loading"); // المان لودینگ (
 
 export async function render() {
   const path = window.location.pathname;
-  const page = routes[path];
 
   // نمایش لودینگ
   if (loading) loading.style.display = "flex";
   app.innerHTML = "";
 
   try {
+    // بررسی مسیر داینامیک برای دسته‌بندی‌ها
+    const categoryMatch = path.match(/^\/categories\/(.+)/);
+    if (categoryMatch) {
+      const category = decodeURIComponent(categoryMatch[1]);
+      const page = new CategoryPage(category);
+      const content = await page.render();
+
+      if (content instanceof HTMLElement) {
+        app.appendChild(content);
+      } else {
+        app.innerHTML = content;
+      }
+
+      return;
+    }
+
+    // بررسی مسیرهای ثابت
+    const page = routes[path];
     if (page) {
-      const content = await Promise.resolve(page());
+      let content;
+
+      if (typeof page === "function") {
+        content = await page();
+      } else if (typeof page.render === "function") {
+        content = await page.render();
+      } else {
+        throw new Error("صفحه به‌درستی تعریف نشده است");
+      }
+
       if (content instanceof HTMLElement) {
         app.appendChild(content);
       } else {
         app.innerHTML = content;
       }
     } else {
-      const content = NotFound();
-      if (content instanceof HTMLElement) {
-        app.appendChild(content);
+      // نمایش صفحه 404
+      const notFoundContent = await NotFound();
+      if (notFoundContent instanceof HTMLElement) {
+        app.appendChild(notFoundContent);
       } else {
-        app.innerHTML = content;
+        app.innerHTML = notFoundContent;
       }
     }
   } catch (err) {
-    app.innerHTML = "<p>خطا در بارگذاری صفحه</p>";
     console.error("Page load error:", err);
+    app.innerHTML = `<p class='min-h-screen text-white text-6xl'>خطا در بارگذاری صفحه</p>`;
   } finally {
     // مخفی کردن لودینگ
     if (loading) loading.style.display = "none";
   }
 }
 
+// تابع ناوبری بین صفحات
 export function navigate(url) {
   window.history.pushState({}, "", url);
   render();
