@@ -52,7 +52,6 @@
 .clippath {
   clip-path: polygon(100% 0%, 0% 0%, 0% 96%, 50% 100%, 100% 96%);
 }
-
 .submenu {
   @apply mr-5 pr-3 child:p-0.5 text-zinc-600 dark:text-white overflow-hidden max-h-0 opacity-0 transition-all duration-300 ease-in-out;
 }
@@ -61,6 +60,15 @@
   max-height: 500px;      /*  مقدار عددی قابل انیمیشن */
   opacity: 1;
   margin-top: 0.5rem;    
+}
+.menu-active-link{
+  @apply text-violet-300 underline underline-offset-[.8rem]
+}
+.mobile-menu-active-link{
+  @apply inline-block bg-violet-200/30  w-full p-0.5 rounded-lg pr-1.5
+}
+#submenu-watches .mobile-menu-active-link{
+  @apply  w-full rounded-none 
 }
 
 #loading {

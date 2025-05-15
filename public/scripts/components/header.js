@@ -15,6 +15,7 @@ export default class Header {
     this.applyTheme();
     this.addEventListeners();
     this.updateLoginBtn();
+    this.activeMenuHandler();
     new Cart();
   }
 
@@ -27,7 +28,7 @@ export default class Header {
               <img src="images/logo.png" alt="digital store">
             </a>
             <ul class="flex items-center h-14 gap-x-6 lg:gap-x-9 text-xl text-gray-300 tracking-tightest child:h-full child:leading-[56px] child:transition-colors child-hover:text-violet-300">
-              <li class="font-DanaMedium text-violet-200"><a href="/" data-link>صفحه اصلی</a></li>
+              <li class="font-DanaMedium "><a href="/" data-link class='menu-active-link'>صفحه اصلی</a></li>
               <li class="relative group/menu">
                 <a  href="/shop" data-link>فروشگاه</a>
                 <ul class="absolute top-full opacity-0 invisible group-hover/menu:opacity-100 group-hover/menu:visible w-52 p-6 space-y-4 bg-white text-slate-700 dark:bg-slate-700 dark:text-gray-300 text-base tracking-normal shadow-custom rounded-2xl border-t-[3px] border-t-violet-300 transition-all delay-75 child:transition-colors child-hover:text-violet-300">
@@ -116,5 +117,14 @@ export default class Header {
   }
   getTheme() {
     return localStorage.getItem("theme") === "dark" ? "dark" : "light";
+  }
+  activeMenuHandler() {
+    this.menuLinks = document.querySelectorAll("a[data-link]");
+    this.menuLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        this.menuLinks.forEach((l) => l.classList.remove("menu-active-link"));
+        e.currentTarget.classList.add("menu-active-link");
+      });
+    });
   }
 }

@@ -4,36 +4,36 @@ import CartStore from "./CartStore.js";
 
 export default class MobileMenu {
   constructor() {
-    // Bind متدها به instance
     this.openMenu = this.openMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
     this.openCart = this.openCart.bind(this);
     this.closeCart = this.closeCart.bind(this);
-    this.toggleSubmenu = this.toggleSubmenu.bind(this);
-  
-    //بروزرسانی ایکون سبد خرید
     window.addEventListener("cartUpdated", () => this.updateCartBadge());
-    // ادامه‌ی constructor
+
     this.topbarTarget = document.querySelector("#mobileTopBar");
     this.menuTarget = document.querySelector("#mobileMenu");
+
     this.cart = new MobileCart();
+    this.cartCount = CartStore.getCount(); // ✅ مقداردهی cartCount
     this.render();
+
     this.cacheElements();
+
     this.auth = new AuthManager(
       () => this.updateLoginBtn(),
       () => this.getTheme()
     );
-  
+
     this.updateLoginBtn();
-    this.updateCartBadge()
+    this.updateCartBadge();
     this.bindEvents();
     this.themeBtnHandler();
+    this.activeMenuHandler();
   }
-  
 
   render() {
     this.topbarTarget.innerHTML = `
-      <div class=" fixed inset-0 top-0 flex md:hidden items-center justify-between bg-white dark:bg-zinc-700 px-4 h-16 z-20">
+      <div class="fixed inset-0 top-0 flex md:hidden items-center justify-between bg-white dark:bg-zinc-700 px-4 h-16 z-20">
         <div id="mobile-menu-btn">
           <svg class="w-6 h-6 text-zinc-700 dark:text-white">
             <use href="#bars-3"></use>
@@ -48,10 +48,10 @@ export default class MobileMenu {
           <svg class="w-6 h-6 text-zinc-700 dark:text-white">
             <use href="#cart"></use>
           </svg>
-           <span id="mobileCartBadge" class="absolute -top-2 -right-3 bg-violet-400 text-black text-xs px-1.5 py-0.5 rounded-full 
+          <span id="mobileCartBadge" class="absolute -top-2 -right-3 bg-violet-400 text-black text-xs px-1.5 py-0.5 rounded-full 
             ${this.cartCount === 0 ? "hidden" : ""}">
               ${this.cartCount}
-            </span>
+          </span>
         </button>
       </div>
     `;
@@ -68,8 +68,8 @@ export default class MobileMenu {
         </div>
         <div>
           <ul class="text-zinc-600 dark:text-white space-y-2 child:p-1 child:pr-2.5 child:rounded-md">
-            <li class="bg-violet-200/30 pr-0">
-              <a href="/" data-link class="flex items-center gap-x-2">
+            <li>
+              <a href="/" data-link class="flex items-center gap-x-2 mobile-menu-active-link">
                 <svg class="w-5 h-5 inline-block"><use href="#home"></use></svg>
                 صفحه اصلی
               </a>
@@ -88,18 +88,18 @@ export default class MobileMenu {
                   <svg class="w-5 h-5 inline-block hover:text-violet-400"><use href="#chevron-down"></use></svg>
                 </span>
               </div>
-              <ul id="submenu-shop" class="submenu" >
+              <ul id="submenu-shop" class="submenu">
                 <li><a href="/categories/laptops" data-link>لپ تاپ</a></li>
                 <li><a href="/categories/tablets" data-link>تبلت</a></li>
                 <li><a href="/categories/smartphones" data-link>موبایل</a></li>
-                <li>
+                <li >
                   <div class="submenu-toggle cursor-pointer" data-target="#submenu-watches">
                     <a>ساعت</a>
                     <svg class="w-5 h-5 inline-block hover:text-violet-400"><use href="#chevron-down"></use></svg>
                   </div>
-                  <ul id="submenu-watches" class="submenu bg-violet-500  rounded-xl ">
-                    <li><a href="/categories/mens-watches" data-link>مردانه</a></li>
-                    <li><a href="/categories/womens-watches" data-link>زنانه</a></li>
+                  <ul id="submenu-watches" class="submenu !text-white bg-violet-500 rounded-md !p-0 child:!p-0">
+                    <li><a href="/categories/mens-watches" data-link class='p-2'>مردانه</a></li>
+                    <li><a href="/categories/womens-watches" data-link class='p-2'>زنانه</a></li>
                   </ul>
                 </li>
                 <li><a href="/categories/mobile-accessories" data-link>لوازم جانبی</a></li> 
@@ -125,27 +125,34 @@ export default class MobileMenu {
     this.overlay = document.getElementById("overlay");
     this.menuBtn = document.getElementById("mobile-menu-btn");
     this.closeBtn = document.getElementById("close-mobile-menu");
-    this.submenuBtn = document.getElementById("submenu_open_btn");
-    this.submenu = this.menu.querySelector(".submenu");
     this.themeButton = document.getElementById("mobileThemeBtn");
     this.cartBox = document.querySelector(".cartBox");
     this.openCartBtns = document.querySelectorAll(".openCartBtn");
-    this.closeCartBtn= document.getElementById("close-cart-menu");
+    this.closeCartBtn = document.getElementById("close-cart-menu"); 
+    this.menuLinks = this.menu.querySelectorAll("a[data-link]"); 
   }
-
 
   bindEvents() {
     this.menuBtn?.addEventListener("click", this.openMenu);
     this.overlay?.addEventListener("click", this.closeMenu);
     this.closeBtn?.addEventListener("click", this.closeMenu);
-    this.submenuBtn?.addEventListener("click", this.toggleSubmenu);
-    document.querySelectorAll('.submenu-toggle').forEach(toggle => this.toggleSubmenu(toggle))
+
+    // ✅ اصلاح toggleSubmenu بدون متد اضافه
+    document.querySelectorAll(".submenu-toggle").forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        const targetSelector = toggle.getAttribute("data-target");
+        const submenu = document.querySelector(targetSelector);
+        if (submenu) submenu.classList.toggle("submenu--open");
+      });
+    });
+
     this.openCartBtns.forEach((btn) => {
       btn.addEventListener("click", this.openCart);
     });
-    this.closeCartBtn.addEventListener('click',this.closeCart)
+
+    this.closeCartBtn?.addEventListener("click", this.closeCart);
     this.overlay?.addEventListener("click", this.closeCart);
-  
+
     document.querySelector(".mobileRegBtn")?.addEventListener("click", () => {
       if (this.auth.isLoggedIn()) {
         this.auth.logOut();
@@ -153,56 +160,46 @@ export default class MobileMenu {
         this.auth.showRegisterForm();
       }
     });
+
     window.addEventListener("storage", () => {
       this.cartItems = CartStore.getItems();
       this.updateCartBadge();
     });
   }
-  
+
   openMenu() {
     this.menu.classList.remove("translate-x-full");
     this.overlay.classList.remove("opacity-0", "invisible");
     this.overlay.classList.add("opacity-100", "visible");
   }
-  
+
   closeMenu() {
     this.menu.classList.add("translate-x-full");
     this.overlay.classList.remove("opacity-100", "visible");
     this.overlay.classList.add("opacity-0", "invisible");
   }
-  
+
   openCart() {
     this.cartBox.classList.add("left-0");
     this.cartBox.classList.remove("-left-full");
     this.overlay.classList.remove("opacity-0", "invisible");
     this.overlay.classList.add("opacity-100", "visible");
   }
-  
+
   closeCart() {
     this.cartBox.classList.remove("left-0");
     this.cartBox.classList.add("-left-full");
     this.overlay.classList.remove("opacity-100", "visible");
     this.overlay.classList.add("opacity-0", "invisible");
   }
-  
-  toggleSubmenu(toggle) {
-      toggle.addEventListener('click', () => {
-        const targetSelector = toggle.getAttribute('data-target');
-        const submenu = document.querySelector(targetSelector);
-        if (submenu) {
-          submenu.classList.toggle('submenu--open');
-        }
-      });    
-  }
+
   themeBtnHandler() {
     const currentTheme = localStorage.getItem("theme");
     const isDark = currentTheme === "dark";
 
-    // تنظیم محتوای دکمه بر اساس تم
     this.setThemeButtonContent(this.themeButton, isDark);
 
-    // افزودن رویداد کلیک برای تغییر تم
-    this.themeButton.addEventListener("click", () => {
+    this.themeButton?.addEventListener("click", () => {
       const newTheme = document.documentElement.classList.contains("dark")
         ? "light"
         : "dark";
@@ -211,41 +208,57 @@ export default class MobileMenu {
       this.setThemeButtonContent(this.themeButton, newTheme === "dark");
     });
   }
+
   setThemeButtonContent(themeBtn, isDark) {
+    if (!themeBtn) return;
     if (isDark) {
       themeBtn.innerHTML = `
-            <svg class="w-5 h-5 hidden dark:inline-block">
-                <use href="#sun"></use>
-            </svg>
-            <span class="hidden dark:inline-block">تم روشن</span>`;
+        <svg class="w-5 h-5 hidden dark:inline-block">
+            <use href="#sun"></use>
+        </svg>
+        <span class="hidden dark:inline-block">تم روشن</span>`;
     } else {
       themeBtn.innerHTML = `
-            <svg class="w-5 h-5 inline-block dark:hidden">
-                <use href="#moon"></use>
-            </svg>
-            <span class="inline-block dark:hidden">تم تیره</span>`;
+        <svg class="w-5 h-5 inline-block dark:hidden">
+            <use href="#moon"></use>
+        </svg>
+        <span class="inline-block dark:hidden">تم تیره</span>`;
     }
   }
+
   updateLoginBtn() {
     const btn = document.querySelector(".mobileRegBtn");
     const { username } = this.auth.getUserInfo();
     if (!btn) return;
 
     btn.innerHTML = this.auth.isLoggedIn()
-      ? `<svg class="h-4 w-4  inline-block"><use href="#arrow-right-start-on-rectangle"></use></svg><span>سلام خوش آمدی ${username}</span>`
-      : `<svg class="h-4 w-4  inline-block"><use href="#arrow-right-start-on-rectangle"></use></svg><span>ورود | ثبت نام</span>`;
+      ? `<svg class="h-4 w-4 inline-block"><use href="#arrow-right-start-on-rectangle"></use></svg><span>سلام خوش آمدی ${username}</span>`
+      : `<svg class="h-4 w-4 inline-block"><use href="#arrow-right-start-on-rectangle"></use></svg><span>ورود | ثبت نام</span>`;
   }
+
   getTheme() {
     return localStorage.getItem("theme") === "dark" ? "dark" : "light";
   }
+
   updateCartBadge() {
     const cartBadge = document.getElementById("mobileCartBadge");
     const count = CartStore.getCount();
-    if (count > 0) {
-      cartBadge.classList.remove("hidden");
-      cartBadge.textContent = count;
-    } else {
-      cartBadge.classList.add("hidden");
+    if (cartBadge) {
+      if (count > 0) {
+        cartBadge.classList.remove("hidden");
+        cartBadge.textContent = count;
+      } else {
+        cartBadge.classList.add("hidden");
+      }
     }
+  }
+
+  activeMenuHandler() {
+    this.menuLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        this.menuLinks.forEach((l) => l.classList.remove("mobile-menu-active-link"));
+        e.currentTarget.classList.add("mobile-menu-active-link");
+      });
+    });
   }
 }
