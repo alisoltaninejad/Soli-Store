@@ -21,20 +21,20 @@ export default class Sections {
         <!-- categories -->
         <div class="grid gap-14 grid-cols-2 md:grid-cols-4 items-center justify-center dark:text-white">
           <figure>
-            <a  href="/Watches" data-link><img src="/public/images/category-man-watches.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-blue-200" alt="category"></a>
-            <figcaption class="block text-lg md:text-xl text-center mt-6">ساعت</figcaption>
+            <a  href="/categories/Watches" data-link><img src="/public/images/category-man-watches.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-blue-200" alt="category"></a>
+            <a  href="/categories/Watches" data-link class="block text-lg md:text-xl text-center mt-6">ساعت</a>
           </figure>
           <figure>
-            <a  href="/DigitalAccessories" data-link><img src="/public/images/category-mobile-accessories.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
-            <figcaption class="block text-lg md:text-xl text-center mt-6">لوازم جانبی</figcaption>
+            <a  href="/categories/DigitalAccessories" data-link><img src="/public/images/category-mobile-accessories.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
+            <a  href="/categories/mobile-accessories" data-link class="block text-lg md:text-xl text-center mt-6">لوازم جانبی</a>
           </figure>
           <figure>
-            <a href="/Laptop" data-link><img src="/public/images/category-laptops.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
-            <figcaption class="block text-lg md:text-xl text-center mt-6">لپ تاپ</figcaption>
+            <a href="/categories/laptops" data-link><img src="/public/images/category-laptops.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
+            <a href="/categories/laptops" data-link class="block text-lg md:text-xl text-center mt-6">لپ تاپ</a>
           </figure>
           <figure>
-            <a  href="/Mobile" data-link><img src="/public/images/category-tablets.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-violet-200" alt="category"></a>
-            <figcaption class="block text-lg md:text-xl text-center mt-6">تبلت و موبایل</figcaption>
+            <a  href="/categories/phones" data-link><img src="/public/images/category-tablets.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-violet-200" alt="category"></a>
+            <a  href="/categories/phones" data-link class="block text-lg md:text-xl text-center mt-6">تبلت و موبایل</a>
           </figure>
         </div>
 

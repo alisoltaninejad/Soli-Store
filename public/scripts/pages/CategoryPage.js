@@ -9,7 +9,9 @@ export default class CategoryPage {
 
   async render() {
     try {
-      const res = await fetch(`https://dummyjson.com/products/category/${this.category}`);
+      const res = await fetch(
+        `https://dummyjson.com/products/category/${this.category}`
+      );
       const data = await res.json();
       this.products = data.products;
     } catch (err) {
@@ -32,7 +34,7 @@ export default class CategoryPage {
           </h2>
         </div>
         <section class="products mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-10">
-          ${this.products.map(p => this.renderProductCard(p)).join("")}
+          ${this.products.map((p) => this.renderProductCard(p)).join("")}
         </section>
       </div>
     `;
@@ -44,27 +46,47 @@ export default class CategoryPage {
 
   renderProductCard(product) {
     return `
-      <div class="product flex flex-col text-slate-700 dark:text-white bg-indigo-200 dark:bg-slate-600 rounded-2xl h-full min-h-[360px] max-w-[280px] p-0.5 md:p-2" data-id="${product.id}">
-        <img src="${product.thumbnail || "./images/default.png"}" alt="${product.title}" class="min-w-[200px] min-h-[170px] m-auto object-contain">
+      <div class="product flex flex-col text-slate-700 dark:text-white bg-indigo-200 dark:bg-slate-600 rounded-2xl h-full min-h-[360px] max-w-[280px] p-3 md:p-2" data-id="${
+        product.id
+      }">
+        <img src="${product.thumbnail || "./images/default.png"}" alt="${
+      product.title
+    }" class="min-w-[200px] min-h-[170px] m-auto object-contain">
         <div class="flex flex-col justify-between p-4 space-y-3 text-center">
-          <h4 class="flex items-baseline justify-center min-h-[48px] max-h-[50px] text-base line-clamp-2">${product.title}</h4>
+          <h4 class="flex items-baseline justify-center min-h-[48px] max-h-[50px] text-base line-clamp-2">${
+            product.title
+          }</h4>
           <div class="w-[100%] flex items-end justify-between mx-auto md:px-3">
             <div class="flex flex-col items-start text-slate-700 dark:text-white font-DanaDemiBold">
               ${
                 product.discountPercentage > 0
                   ? `<span class="line-through decoration-1 decoration-red-500 text-xs">
-                      ${product.price.toLocaleString("fa-IR")} <span class="font-Dana">تومان</span>
+                       ${(Math.round(product.price) * 1000).toLocaleString(
+                         "fa-IR"
+                       )} <span class="font-Dana">تومان</span>
                     </span>`
                   : ""
               }
-              <span>${(product.price * (1 - product.discountPercentage / 100)).toLocaleString("fa-IR")}
-                <span class="font-Dana text-xs">تومان</span>
-              </span>
+          <span>
+            ${(
+              Math.round(
+                product.price * (1 - product.discountPercentage / 100)
+              ) * 1000
+            ).toLocaleString("fa-IR")}
+            <span class="font-Dana text-xs">تومان</span>
+          </span>
             </div>
             <div>
-              <span class="text-green-500 dark:text-green-400 text-xs tracking-tighter">
-                ${product.discountPercentage > 0 ? product.discountPercentage.toLocaleString("fa-IR") + "٪" : ""}
-              </span>
+             <span class="bg-green-500 text-white px-1 py-0.5 rounded-md text-sm tracking-tighter">
+            ${
+              product.discountPercentage > 0
+                ? Math.round(product.discountPercentage).toLocaleString(
+                    "fa-IR"
+                  ) + "%"
+                : ""
+            }
+              تخفیف
+            </span>
             </div>
           </div>
           <button class="addToCartBtn flex items-center justify-center w-[100%] h-9 mt-auto text-gray-100 bg-indigo-500 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 rounded-xl hover:cursor-pointer">

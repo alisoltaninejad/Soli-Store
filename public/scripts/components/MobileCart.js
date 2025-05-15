@@ -2,16 +2,16 @@ import CartStore from "./CartStore.js";
 export default class Cart {
   constructor() {
     this.cartItems = CartStore.getItems();
-    this.createcCartBox()
+    this.createcCartBox();
     this.renderCart();
     this.addEventlisteners();
   }
-   
+
   createcCartBox() {
     let cartContainer = document.createElement("div");
     cartContainer.classList = `cartBox fixed md:hidden top-0  -left-full flex flex-col justify-between  h-full bg-white dark:bg-zinc-700 min-h-screen max-w-[360px] z-40 p-4 transition-all delay-75`;
     this.cartDropdown = cartContainer;
-    document.getElementById('mobileCart').append(cartContainer)
+    document.getElementById("mobileCart").append(cartContainer);
     this.renderCart();
   }
   renderCart() {
@@ -66,31 +66,37 @@ export default class Cart {
                             <div class="flex items-center justify-between w-full h-full mt-2">
                 
                                 <div class="flex flex-col justify-between float-start ">
-                                    <span class="text-teal-600 dark:text-emerald-500 text-xs tracking-tighter">
-                                        ${
-                                          item.discountPercentage > 0
-                                            ? item.discountPercentage.toLocaleString(
-                                                "fa-IR"
-                                              ) + "٪"
-                                            : ""
-                                        }
-                                        %</span>
+                                   <span class="bg-green-500 text-white px-1 py-0.5 rounded-md text-sm w-fit tracking-tighter">
+                                      ${
+                                        item.discountPercentage > 0
+                                          ? Math.round(
+                                              item.discountPercentage
+                                            ).toLocaleString("fa-IR")
+                                          : ""
+                                      }
+                                      %</span>
                                     <div class="flex flex-col items-start pt-1 text-slate-700 dark:text-white font-DanaDemiBold">
                                         ${
                                           item.discountPercentage > 0
                                             ? `<span class="line-through decoration-1 decoration-red-500 text-xs">
-                                            ${item.price.toLocaleString(
-                                              "fa-IR"
-                                            )} <span class="font-Dana">تومان</span>
+                                           ${(
+                                             Math.round(item.price) * 1000
+                                           ).toLocaleString(
+                                             "fa-IR"
+                                           )} <span class="font-Dana">تومان</span>
                                         </span>`
                                             : ""
                                         }
-                                        <span> ${(
-                                          item.price *
-                                          (1 - item.discountPercentage / 100)
-                                        ).toLocaleString("fa-IR")}
-                                            <span class="font-Dana text-xs">تومان</span>
-                                        </span>
+                                  <span>
+                                   ${(
+                                     Math.round(
+                                       item.quantity *
+                                         item.price *
+                                         (1 - item.discountPercentage / 100)
+                                     ) * 1000
+                                   ).toLocaleString("fa-IR")}
+                                    <span class="font-Dana text-xs">تومان</span>
+                                  </span>
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-2 float-end">
@@ -141,62 +147,65 @@ export default class Cart {
     }
   }
   calculateTotal(items) {
-      return items
-        .reduce(
-          (sum, item) => sum + item.price * (1 - item.discountPercentage / 100),
-          0
-        )
-        .toLocaleString("fa-IR");
-    }
-    addEventlisteners = () => {
-      this.cartDropdown.addEventListener("click", (e) => {
-        if (e.target.closest(".reduceProductBtn")) {
-          const targetProductID = e.target.closest(".product")?.dataset.id;
+    const total = items.reduce((sum, item) => {
+      const discountedTotal = Math.round(
+        item.quantity * item.price * (1 - item.discountPercentage / 100)
+      );
+      return sum + discountedTotal * 1000;
+    }, 0);
   
-          const targetProduct = this.cartItems.find(
-            (item) => item.id === Number(targetProductID)
-          );
+    return total.toLocaleString("fa-IR");
+  }
   
-          try {
-            if (targetProduct && targetProduct.quantity > 1) {
-              targetProduct.quantity--;
-            } else {
-              this.cartItems = this.cartItems.filter(
-                (i) => i.id !== Number(targetProductID)
-              );
-            }
-            this.persistAndRender();
-          } catch (e) {
-            console.error("Failed to reduce product quantity!", e);
+  addEventlisteners = () => {
+    this.cartDropdown.addEventListener("click", (e) => {
+      if (e.target.closest(".reduceProductBtn")) {
+        const targetProductID = e.target.closest(".product")?.dataset.id;
+
+        const targetProduct = this.cartItems.find(
+          (item) => item.id === Number(targetProductID)
+        );
+
+        try {
+          if (targetProduct && targetProduct.quantity > 1) {
+            targetProduct.quantity--;
+          } else {
+            this.cartItems = this.cartItems.filter(
+              (i) => i.id !== Number(targetProductID)
+            );
           }
+          this.persistAndRender();
+        } catch (e) {
+          console.error("Failed to reduce product quantity!", e);
         }
-        if (e.target.closest(".increaseProductBtn")) {
-          const targetProductID = e.target.closest(".product")?.dataset.id;
-  
-          const targetProduct = this.cartItems.find(
-            (item) => item.id === Number(targetProductID)
-          );
-  
-          try {
-            if (targetProduct) {
-              targetProduct.quantity++;
-            }
-            this.persistAndRender();
-          } catch (e) {
-            console.error("Failed to reduce product quantity!", e);
+      }
+      if (e.target.closest(".increaseProductBtn")) {
+        const targetProductID = e.target.closest(".product")?.dataset.id;
+
+        const targetProduct = this.cartItems.find(
+          (item) => item.id === Number(targetProductID)
+        );
+
+        try {
+          if (targetProduct) {
+            targetProduct.quantity++;
           }
+          this.persistAndRender();
+        } catch (e) {
+          console.error("Failed to reduce product quantity!", e);
         }
-      });
-  
-      window.addEventListener("storage", () => {
-        this.cartItems = CartStore.getItems();
-        this.renderCart();
-      });
-    };
-    persistAndRender() {
-      CartStore.setItems(this.cartItems);
+      }
+    });
+
+    window.addEventListener("storage", () => {
       this.cartItems = CartStore.getItems();
       this.renderCart();
-      window.dispatchEvent(new Event("cartUpdated")); 
-    }
+    });
+  };
+  persistAndRender() {
+    CartStore.setItems(this.cartItems);
+    this.cartItems = CartStore.getItems();
+    this.renderCart();
+    window.dispatchEvent(new Event("cartUpdated"));
+  }
 }

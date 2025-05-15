@@ -48,7 +48,7 @@ export default class MobileMenu {
           <svg class="w-6 h-6 text-zinc-700 dark:text-white">
             <use href="#cart"></use>
           </svg>
-          <span id="mobileCartBadge" class="absolute -top-2 -right-3 bg-violet-400 text-black text-xs px-1.5 py-0.5 rounded-full 
+          <span id="mobileCartBadge" class="absolute -top-2 -right-3 bg-violet-400 text-gray-900 text-xs px-1.5 py-0.5 rounded-full 
             ${this.cartCount === 0 ? "hidden" : ""}">
               ${this.cartCount}
           </span>

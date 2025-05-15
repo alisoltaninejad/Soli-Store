@@ -16,7 +16,7 @@ export default class ProductsSection {
         laptopRes.json(),
         tabletRes.json(),
       ]);
-     
+
       this.products = [...laptopData.products, ...tabletData.products];
     } catch (err) {
       console.error("خطا در دریافت محصولات:", err);
@@ -64,7 +64,7 @@ export default class ProductsSection {
 
   renderProductCard(product) {
     return `
-      <div class="product flex flex-col text-slate-700 dark:text-white bg-indigo-200 dark:bg-slate-600 rounded-2xl  h-full min-h-[360px] max-w-[280px] p-0.5 md:p-2" data-id="${
+      <div class="product flex flex-col text-slate-700 dark:text-white bg-indigo-200 dark:bg-slate-600 rounded-2xl  h-full min-h-[360px] max-w-[280px] p-3 md:p-2" data-id="${
         product.id
       }">
         <img src="${product.thumbnail || "./images/default.png"}" alt="${
@@ -79,26 +79,28 @@ export default class ProductsSection {
             ${
               product.discountPercentage > 0
                 ? `<span class="line-through decoration-1 decoration-red-500 text-xs">
-                  ${product.price.toLocaleString(
+                  ${(Math.round(product.price) * 1000).toLocaleString(
                     "fa-IR"
                   )} <span class="font-Dana">تومان</span>
                 </span>`
                 : ""
             }
-              <span> ${(
-                product.price *
-                (1 - product.discountPercentage / 100)
-              ).toLocaleString("fa-IR")}
+        <span>
+            ${(
+              Math.round(product.price * (1 - product.discountPercentage / 100)) * 1000
+            ).toLocaleString("fa-IR")}
             <span class="font-Dana text-xs">تومان</span>
-            </span>
+          </span>
             </div>
             <div>
-       <span class="text-green-500 dark:text-green-400 text-xs tracking-tighter">
-        ${
-          product.discountPercentage > 0
-            ? product.discountPercentage.toLocaleString("fa-IR") + "٪"
-            : ""
-        }
+       <span class="bg-green-500 text-white px-1 py-0.5 rounded-md text-sm tracking-tighter">
+       ${
+         product.discountPercentage > 0
+           ? Math.round(product.discountPercentage).toLocaleString("fa-IR") +
+             "%"
+           : ""
+       }
+        تخفیف
       </span>
 
             </div>
