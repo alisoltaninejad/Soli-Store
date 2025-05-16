@@ -1,0 +1,89 @@
+[33mcommit 9e6c9c1b59d007b487ccf0fd28f139888d67acee[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Thu May 15 12:55:10 2025 +0330
+
+    product price display and calculating discounts
+
+[33mcommit 32f54a2a797eac79793a57395156eec0023a94b0[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Thu May 15 12:28:28 2025 +0330
+
+    active menu link
+
+[33mcommit c9fe7fba73c8c628fcba59767b21aafec695d9d3[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Wed May 14 18:35:38 2025 +0330
+
+    submenu collection
+
+[33mcommit d134335886dd92f42807c814a350e991b17c271d[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Tue May 13 12:47:25 2025 +0330
+
+    loading development & footer amendment
+
+[33mcommit b14ac2af1af5495a1892196736f8bdf0c1be5dda[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Mon May 12 12:47:04 2025 +0330
+
+    mobile cart implement
+
+[33mcommit 56508df6a15be402c8c21e4e77fcca14fde99dc3[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Fri May 9 21:20:28 2025 +0330
+
+    General Amendment
+
+[33mcommit c63120d435960c8d82451ccd2323d2d31db40f7d[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Thu May 8 16:22:28 2025 +0330
+
+    responsive footer & Home sections dark theme
+
+[33mcommit f72c86f14948647c947d7e6d8a51e6cbddf165e8[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Thu May 8 14:24:08 2025 +0330
+
+    article API & footer module
+
+[33mcommit b8b178d45187fdfb1b1845e14be8cf9ad38e01a8[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Wed May 7 20:44:40 2025 +0330
+
+    other sections of home page + article template
+
+[33mcommit 258d31f6804c6be9a381adbee88b25f3f1375578[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Tue May 6 13:04:09 2025 +0330
+
+    register handling
+
+[33mcommit a42f44721dedfe9742bc2fe2827d5ea612ea1a0d[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Mon May 5 01:01:57 2025 +0330
+
+    spa structure
+
+[33mcommit a8c1cd1d7295b63b1e8c89be37befcde9d07928e[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Sun May 4 19:09:41 2025 +0330
+
+    cart & adding product logics + sweet alert
+
+[33mcommit a58d22e1007f176be8a7584c935e7cc6946d222b[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Fri May 2 14:00:04 2025 +0330
+
+    Home section & Product section (API including)
+
+[33mcommit 641c203a317ffdc2d42bca431770881f5e546f37[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Thu May 1 22:40:53 2025 +0330
+
+    bug fixing of header & adding Alibaba fonts
+
+[33mcommit 5c84ce88f558c54e199ec0fbc52fcd5fa8623e2a[m
+Author: Ali Soltani <alisolinejad@gmail.com>
+Date:   Thu May 1 14:16:27 2025 +0330
+
+    initial project structure & header & mobile menu

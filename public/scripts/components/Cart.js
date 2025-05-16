@@ -22,7 +22,7 @@ export default class Cart {
     let cartContainer = document.createElement("div");
     cartContainer.id = "cartDropdown";
     cartContainer.className = `
-        absolute top-full left-0 mt-2 w-96 bg-gray-100 
+        absolute top-full left-0 mt-2 w-96 bg-gray-100 min-w-[450px]
         rounded-xl shadow-2xl p-4 z-50 border-t-[3px] 
         border-t-violet-300 bg-white text-slate-700 dark:bg-slate-700 dark:text-gray-300
         opacity-0 invisible transition-all duration-200  
@@ -79,65 +79,60 @@ export default class Cart {
                                           : ""
                                       }
                                       %</span>
-                                  <div class="flex flex-col items-22قلرفstart pt-1 text-slate-700 dark:text-white font-DanaDemiBold">
-                                     ${
-                                       item.discountPercentage > 0
-                                         ? `<span class="line-through decoration-1 decoration-red-500 text-xs">
-                                           ${(
-                                             Math.round(
-                                               item.price *
-                                                 (1 -
-                                                   item.discountPercentage /
-                                                     100)
-                                             ) * 1000
-                                           ).toLocaleString(
-                                             "fa-IR"
-                                           )}<span class="font-Dana">تومان</span>
-                                          </span>`
-                                         : ""
-                                     }
-                                        <span>
-                                   ${(
-                                     Math.round(
-                                       item.quantity *
-                                         item.price *
-                                         (1 - item.discountPercentage / 100)
-                                     ) * 1000
-                                   ).toLocaleString("fa-IR")}
-                                      <span class="font-Dana text-xs">تومان</span>
-                                    </span>
-                                  </div>
-                              </div>
-                              <div class="flex items-center space-x-2 float-end">
-                                  <!-- دکمه کاهش -->
-                                  <button
-                                      class="reduceProductBtn relative w-5 h-5 leading-5 bg-gradient-to-r from-fuchsia-400 to-rose-500 hover:from-fuchsia-600 hover:to-rose-700 text-white font-bold  rounded-full shadow-lg transform transition-transform duration-200 hover:scale-110 active:scale-95">
-                                      <span class=" flex items-center justify-center absolute  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                          -
-                                      </span>
-                                  </button>
-              
-                                  <!-- تعداد فعلی -->
-                                  <span class="text-md font-semibold px-1.5 py-0.5 rounded bg-gray-100 text-gray-800">
-                                      ${item.quantity}
-                                  </span>
-              
-                                  <!-- دکمه افزایش -->
-                                  <button
-                                      class="increaseProductBtn relative w-5 h-5 leading-5 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold  rounded-full shadow-lg transform transition-transform duration-200 hover:scale-110 active:scale-95">
-                                      <span class=" flex items-center justify-center  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                          +
-                                      </span>
-                                  </button>
-                              </div>
-                          </div>
+                  <div class="flex flex-col items-start pt-1 text-slate-700 dark:text-white font-DanaDemiBold">
+                      ${
+                        item.discountPercentage > 0
+                          ? `<span class="line-through decoration-1 decoration-red-500 text-xs">
+                              ${(
+                                Math.round(item.quantity * item.price) * 1000
+                              ).toLocaleString("fa-IR")}
+                              <span class="font-Dana">تومان</span>
+                            </span>`
+                          : ""
+                      }
+                      <span>
+                        ${(
+                          Math.round(
+                            item.quantity *
+                              item.price *
+                              (1 - item.discountPercentage / 100)
+                          ) * 1000
+                        ).toLocaleString("fa-IR")}
+                        <span class="font-Dana text-xs">تومان</span>
+                      </span>
+                    </div>
+
+                      </div>
+                      <div class="flex items-center space-x-2 float-end">
+                          <!-- دکمه کاهش -->
+                          <button
+                              class="reduceProductBtn relative w-5 h-5 leading-5 bg-gradient-to-r from-fuchsia-400 to-rose-500 hover:from-fuchsia-600 hover:to-rose-700 text-white font-bold  rounded-full shadow-lg transform transition-transform duration-200 hover:scale-110 active:scale-95">
+                              <span class=" flex items-center justify-center absolute  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                  -
+                              </span>
+                          </button>
+      
+                          <!-- تعداد فعلی -->
+                          <span class="text-md font-semibold px-1.5 py-0.5 rounded bg-gray-100 text-gray-800">
+                              ${item.quantity}
+                          </span>
+      
+                          <!-- دکمه افزایش -->
+                          <button
+                              class="increaseProductBtn relative w-5 h-5 leading-5 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold  rounded-full shadow-lg transform transition-transform duration-200 hover:scale-110 active:scale-95">
+                              <span class=" flex items-center justify-center  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                  +
+                              </span>
+                          </button>
                       </div>
                   </div>
               </div>
-                        `
+          </div>
+      </div>
+                `
                 )
                 .join("")}
-            </div>
+    </div>
     
             <!-- footer -->
             <div class="flex items-center justify-between mt-6">
@@ -163,11 +158,9 @@ export default class Cart {
       );
       return sum + discountedTotal * 1000;
     }, 0);
-  
+
     return total.toLocaleString("fa-IR");
   }
-  
-  
 
   addEventlisteners = () => {
     this.cartDropdown.addEventListener("click", (e) => {

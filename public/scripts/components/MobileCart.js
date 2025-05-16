@@ -9,7 +9,7 @@ export default class Cart {
 
   createcCartBox() {
     let cartContainer = document.createElement("div");
-    cartContainer.classList = `cartBox fixed md:hidden top-0  -left-full flex flex-col justify-between  h-full bg-white dark:bg-zinc-700 min-h-screen max-w-[360px] z-40 p-4 transition-all delay-75`;
+    cartContainer.classList = `cartBox fixed md:hidden top-0 min-w-[55%]  -left-full flex flex-col justify-between  h-full bg-white dark:bg-zinc-700 min-h-screen max-w-[360px] z-40 p-4 transition-all delay-75`;
     this.cartDropdown = cartContainer;
     document.getElementById("mobileCart").append(cartContainer);
     this.renderCart();
@@ -80,7 +80,9 @@ export default class Cart {
                                           item.discountPercentage > 0
                                             ? `<span class="line-through decoration-1 decoration-red-500 text-xs">
                                            ${(
-                                             Math.round(item.price) * 1000
+                                             Math.round(
+                                               item.quantity * item.price
+                                             ) * 1000
                                            ).toLocaleString(
                                              "fa-IR"
                                            )} <span class="font-Dana">تومان</span>
@@ -153,10 +155,10 @@ export default class Cart {
       );
       return sum + discountedTotal * 1000;
     }, 0);
-  
+
     return total.toLocaleString("fa-IR");
   }
-  
+
   addEventlisteners = () => {
     this.cartDropdown.addEventListener("click", (e) => {
       if (e.target.closest(".reduceProductBtn")) {
