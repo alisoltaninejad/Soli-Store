@@ -29,27 +29,41 @@ export async function render() {
   app.innerHTML = "";
 
   try {
-    // بررسی مسیر داینامیک برای دسته‌بندی‌ها
+    const path = window.location.pathname;
+  
+    // اگر مسیر دسته‌بندی بود: /categories/:category
     const categoryMatch = path.match(/^\/categories\/(.+)/);
     if (categoryMatch) {
       const category = decodeURIComponent(categoryMatch[1]);
       const page = new CategoryPage(category);
       const content = await page.render();
-
+  
       if (content instanceof HTMLElement) {
         app.appendChild(content);
       } else {
         app.innerHTML = content;
       }
-
       return;
     }
-
+  
+    // اگر مسیر فروشگاه بود: /shop
+    if (path === "/shop") {
+      const page = new CategoryPage("shop");
+      const content = await page.render();
+  
+      if (content instanceof HTMLElement) {
+        app.appendChild(content);
+      } else {
+        app.innerHTML = content;
+      }
+      return;
+    }
+  
     // بررسی مسیرهای ثابت
     const page = routes[path];
     if (page) {
       let content;
-
+  
       if (typeof page === "function") {
         content = await page();
       } else if (typeof page.render === "function") {
@@ -57,7 +71,7 @@ export async function render() {
       } else {
         throw new Error("صفحه به‌درستی تعریف نشده است");
       }
-
+  
       if (content instanceof HTMLElement) {
         app.appendChild(content);
       } else {
@@ -76,9 +90,9 @@ export async function render() {
     console.error("Page load error:", err);
     app.innerHTML = `<p class='min-h-screen text-white text-6xl'>خطا در بارگذاری صفحه</p>`;
   } finally {
-    // مخفی کردن لودینگ
     if (loading) loading.style.display = "none";
   }
+  
 }
 
 // تابع ناوبری بین صفحات

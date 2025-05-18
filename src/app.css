@@ -65,7 +65,7 @@
   @apply text-violet-300 underline underline-offset-[.8rem]
 }
 .mobile-menu-active-link{
-  @apply inline-block bg-violet-200/30  w-full p-0.5 rounded-lg pr-1.5
+  @apply inline-block bg-violet-200/30  w-[80%] p-0.5 rounded-lg pr-1.5
 }
 #submenu-watches .mobile-menu-active-link{
   @apply  w-full rounded-none 

@@ -21,11 +21,11 @@ export default class Sections {
         <!-- categories -->
         <div class="grid gap-14 grid-cols-2 md:grid-cols-4 items-center justify-center dark:text-white">
           <figure>
-            <a  href="/categories/Watches" data-link><img src="/public/images/category-man-watches.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-blue-200" alt="category"></a>
-            <a  href="/categories/Watches" data-link class="block text-lg md:text-xl text-center mt-6">ساعت</a>
+            <a  href="/categories/watches" data-link><img src="/public/images/category-man-watches.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-blue-200" alt="category"></a>
+            <a  href="/categories/watches" data-link class="block text-lg md:text-xl text-center mt-6">ساعت</a>
           </figure>
           <figure>
-            <a  href="/categories/DigitalAccessories" data-link><img src="/public/images/category-mobile-accessories.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
+            <a  href="/categories/mobile-accessories" data-link><img src="/public/images/category-mobile-accessories.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
             <a  href="/categories/mobile-accessories" data-link class="block text-lg md:text-xl text-center mt-6">لوازم جانبی</a>
           </figure>
           <figure>

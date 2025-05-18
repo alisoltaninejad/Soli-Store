@@ -67,7 +67,7 @@ export default class BlogSection {
         <div class="container mt-20">
           <div class="text-slate-700 dark:text-white flex items-end justify-between">
             <h2 class="font-AlibabaLight text-xl md:text-3xl">مطالب خواندنی</h2>
-            <a href="/shop" data-link class="flex items-center justify-between text-violet-300">
+            <a href="/blog" data-link class="flex items-center justify-between text-violet-300">
               مشاهده همه مطالب
               <svg class="w-4 h-4"><use href="#arrow-left"></use></svg>
             </a>

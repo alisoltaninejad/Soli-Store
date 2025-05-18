@@ -93,8 +93,8 @@ export default class MobileMenu {
                 <li><a href="/categories/tablets" data-link>تبلت</a></li>
                 <li><a href="/categories/smartphones" data-link>موبایل</a></li>
                 <li >
-                  <div class="submenu-toggle cursor-pointer" data-target="#submenu-watches">
-                    <a>ساعت</a>
+                  <div class="submenu-toggle cursor-pointer flex items-center justify-between" data-target="#submenu-watches">
+                    <a href="/categories/watches" data-link>ساعت</a>
                     <svg class="w-5 h-5 inline-block hover:text-violet-400"><use href="#chevron-down"></use></svg>
                   </div>
                   <ul id="submenu-watches" class="submenu !text-white bg-violet-500 rounded-md !p-0 child:!p-0">

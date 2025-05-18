@@ -36,7 +36,7 @@ export default class Header {
                 <li><a href="/categories/tablets" data-link>تبلت</a></li>
                 <li><a href="/categories/smartphones" data-link>موبایل</a></li>
               <li class="relative group/submenu">
-                <a href="/categories/watches">ساعت</a>
+                <a href="/categories/watches" data-link>ساعت</a>
                 <ul class="absolute top-full right-[20%] opacity-0 invisible group-hover/submenu:opacity-100 group-hover/submenu:visible w-52 p-6 space-y-4 bg-white text-slate-700 dark:bg-slate-700 dark:text-gray-300 text-base tracking-normal shadow-custom rounded-2xl border-t-[3px] border-t-violet-300 transition-all delay-75 child:transition-colors child-hover:text-violet-300 duration-200 z-50">
                   <li><a href="/categories/mens-watches" data-link>مردانه</a></li>
                   <li><a href="/categories/womens-watches" data-link>زنانه</a></li>
@@ -55,7 +55,7 @@ export default class Header {
               <div class=" py-3 relative group" id="cartBtn">
                 <div  class="block">
                   <svg class="h-8 w-8"><use href="#cart"></use></svg>
-                  <span id="cartBadge" class="absolute -top-1 -right-2 bg-violet-400 text-black text-xs px-1.5 py-0.5 rounded-full 
+                  <span id="cartBadge" class="absolute -top-1 -right-2 md:top-1 bg-violet-400 text-black text-xs px-1.5 py-0.5 rounded-full 
                   ${this.cartCount === 0 ? "hidden" : ""}">
                     ${this.cartCount}
                   </span>

@@ -5,32 +5,67 @@ export default class CategoryPage {
   constructor(category) {
     this.category = category;
     this.products = [];
+    this.categories = {
+      'watches': 'ساعت',
+      'mens-watches': 'ساعت مردانه',
+      'womens-watches': 'ساعت زنانه',
+      'mobile-accessories': 'لوازم جانبی',
+      'laptops': 'لپ تاپ',
+      'phones': 'موبایل و تبلت',
+      'tablets': 'تبلت',
+      'smartphones': 'گوشی هوشمند',
+    };
   }
 
   async render() {
-    try {
-      const res = await fetch(
-        `https://dummyjson.com/products/category/${this.category}`
+    let URLs = [];
+
+    if (this.category === 'shop') {
+      // همه دسته‌ها به جز 'phones' و 'watches'
+      const exclude = ['phones', 'watches'];
+      const validCategories = Object.keys(this.categories).filter(
+        (key) => !exclude.includes(key) && key !== 'shop'
       );
-      const data = await res.json();
-      this.products = data.products;
+      URLs = validCategories.map(
+        (cat) => `https://dummyjson.com/products/category/${cat}`
+      );
+    } else if (this.category === 'phones') {
+      URLs = [
+        'https://dummyjson.com/products/category/tablets',
+        'https://dummyjson.com/products/category/smartphones'
+      ];
+    } else if (this.category === 'watches') {
+      URLs = [
+        'https://dummyjson.com/products/category/mens-watches',
+        'https://dummyjson.com/products/category/womens-watches'
+      ];
+    } else {
+      URLs = [`https://dummyjson.com/products/category/${this.category}`];
+    }
+
+    try {
+      const responses = await Promise.all(URLs.map(url => fetch(url)));
+      const allData = await Promise.all(responses.map(res => res.json()));
+      this.products = allData.flatMap(data => data.products);
     } catch (err) {
       console.error("خطا در دریافت محصولات:", err);
       this.products = [];
-      return `<h2 class="flex items-center justify-center w-full h-36 text-4xl dark:text-gray-300">
-        خطا در دریافت محصولات!
-        <svg class="w-12 h-12 m-3">
-          <use href="#cart"></use>
-        </svg>
-      </h2>`;
+      return `
+        <h2 class="flex items-center justify-center w-full h-36 text-4xl dark:text-gray-300">
+          خطا در دریافت محصولات!
+          <svg class="w-12 h-12 m-3">
+            <use href="#cart"></use>
+          </svg>
+        </h2>`;
     }
 
-    // رندر کارت‌ها
     const content = `
       <div class="container mt-32 md:mt-48 min-h-screen">
         <div class="text-slate-700 dark:text-white flex items-end justify-between">
           <h2 class="font-AlibabaLight text-center text-xl md:text-3xl capitalize">
-            محصولات دسته ${this.category}
+            ${this.category === 'shop'
+              ? 'همه محصولات'
+              : `محصولات دسته ${this.categories[this.category] || this.category}`}
           </h2>
         </div>
         <section class="products mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-10">
@@ -39,8 +74,7 @@ export default class CategoryPage {
       </div>
     `;
 
-    setTimeout(() => this.addEventListeners(), 0); // افزودن رویدادها بعد از DOM رندر
-
+    setTimeout(() => this.addEventListeners(), 0);
     return content;
   }
 
