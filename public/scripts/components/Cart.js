@@ -212,6 +212,7 @@ export default class Cart {
     CartStore.setItems(this.cartItems);
     this.cartItems = CartStore.getItems();
     this.renderCart();
+    //یک رویداد سراسری در برنامه تعریف میکنه که هروقت cartUpdated رخ داد این کد اجرا بشه
     window.dispatchEvent(new Event("cartUpdated")); // آگاه کردن MobileMenu
   }
 }

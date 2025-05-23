@@ -1,4 +1,4 @@
-import Header from './components/Header.js';
+import Header from './components/header.js';
 import MobileMenu from './components/MobileMenu.js';
 import Footer from './components/footer.js';
 

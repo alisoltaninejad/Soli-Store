@@ -1,5 +1,6 @@
 import { render, navigate } from './router.js';
 import App from './app.js';
+console.log("main.js loaded");
 
 document.addEventListener('DOMContentLoaded', () => {
   App(); // اضافه کردن کامپوننت های مشترک

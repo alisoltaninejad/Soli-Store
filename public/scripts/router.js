@@ -1,5 +1,4 @@
 import HomePage from "./pages/Home.js";
-import ShopPage from "./pages/Shop.js";
 import BlogPage from "./pages/Blog.js";
 import AboutPage from "./pages/About.js";
 import ContactPage from "./pages/Contact.js";
@@ -12,16 +11,17 @@ const routes = {
   "/": HomePage,
   "/public/": HomePage,
   "/public/index.html": HomePage,
-  "/shop": ShopPage,
   "/blog": BlogPage,
   "/about": AboutPage,
   "/contact": ContactPage,
 };
+console.log("router.js loaded");
 
 const app = document.getElementById("app");
 const loading = document.getElementById("loading"); // المان لودینگ (مثلاً <div id="loading">)
 
 export async function render() {
+  console.log("Rendering...");
   const path = window.location.pathname;
 
   // نمایش لودینگ
@@ -97,6 +97,7 @@ export async function render() {
 
 // تابع ناوبری بین صفحات
 export function navigate(url) {
+  //تنظیم url بدون رفرش مرورگر
   window.history.pushState({}, "", url);
   render();
 }
