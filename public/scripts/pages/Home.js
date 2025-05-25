@@ -4,7 +4,7 @@ import Sections from '../components/Sections.js';
 
 export default async function HomePage() {
   const container = document.createElement('div');
-
+  container.classList='mb-24'
   const homeSection = new HomeSection();
   const productsSection = new ProductsSection();
   const otherSections = new Sections(); // ← اینجا باید instance بسازی

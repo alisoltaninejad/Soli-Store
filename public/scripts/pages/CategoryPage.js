@@ -60,7 +60,7 @@ export default class CategoryPage {
     }
 
     const content = `
-      <div class="container mt-32 md:mt-48 min-h-screen">
+      <div class="container mt-32 md:mt-48 min-h-screen mb-24">
         <div class="text-slate-700 dark:text-white flex items-end justify-between">
           <h2 class="font-AlibabaLight text-center text-xl md:text-3xl capitalize">
             ${this.category === 'shop'
@@ -68,7 +68,7 @@ export default class CategoryPage {
               : `محصولات دسته ${this.categories[this.category] || this.category}`}
           </h2>
         </div>
-        <section class="products mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-10">
+        <section class="products mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-10 ">
           ${this.products.map((p) => this.renderProductCard(p)).join("")}
         </section>
       </div>

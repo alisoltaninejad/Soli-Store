@@ -1,6 +1,6 @@
 export default async function BlogPage() {
   const container = document.createElement("div");
-  container.className = "container mt-32 md:mt-48 min-h-screen ";
+  container.className = "container mt-32 md:mt-48 min-h-screen mb-24";
 
   let articles = [];
   let isfailed = false;
