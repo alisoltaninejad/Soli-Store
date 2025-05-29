@@ -2,7 +2,7 @@ import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2/+esm";
 
 export default function ContactPage() {
   const container = document.createElement('div');
-  container.className = 'flex flex-col items-center justify-center min-h-full bg-violet-100 dark:bg-slate-600';
+  container.className = 'flex flex-col items-center justify-center min-h-full';
 
   container.innerHTML = `
     <div class="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-6 md:p-10 w-full max-w-2xl mt-36 md:mt-44 mb-32">
@@ -93,9 +93,6 @@ export default function ContactPage() {
         popup: "animate__animated animate__bounceOut",
       },
     });
-
-    // فرم را در صورت نیاز پاک کن:
-    // form.reset();
   });
 
   return container;

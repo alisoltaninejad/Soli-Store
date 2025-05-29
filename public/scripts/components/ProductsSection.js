@@ -64,7 +64,7 @@ export default class ProductsSection {
 
   renderProductCard(product) {
     return `
-      <div class="product flex flex-col text-slate-700 dark:text-white bg-indigo-200 dark:bg-slate-600 rounded-2xl  h-full min-h-[360px] max-w-[280px] p-3 md:p-2" data-id="${
+      <div class="product flex flex-col text-slate-700 dark:text-white drop-shadow-md bg-violet-200 dark:bg-slate-600 rounded-2xl  h-full min-h-[360px] max-w-[280px] p-3 md:p-2" data-id="${
         product.id
       }">
         <img src="${product.thumbnail || "./images/default.png"}" alt="${

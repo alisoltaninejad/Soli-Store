@@ -27,7 +27,7 @@ export default class BlogSection {
 
   createBlogBox(title, img, day, month, year) {
     return `
-        <div class="flex flex-col items-center justify-between p-2 bg-gray-50 dark:bg-slate-600 rounded-3xl shadow-2xs">
+        <div class="flex flex-col items-center justify-between p-2  drop-shadow-sm bg-gray-50 dark:bg-slate-600 rounded-3xl shadow-2xs">
           <div class="rounded-3xl overflow-hidden w-full h-full">
             <img src="${
               img || "images/category-smaartphone.jpg"

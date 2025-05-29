@@ -54,15 +54,15 @@ export default class Footer {
                     </div>
                 </div>
              <div class="flex items-center justify-center md:justify-between gap-3 mt-6">
-                <div class=" shrink flex items-center gap-2 justify-center basis-[40%] h-8 px-1 text-center rounded-lg border bg-indigo-500 cursor-pointer transition-all hover:bg-transparent">
+                <a href='https://t.me/alisolinejad' class=" shrink flex items-center gap-2 justify-center basis-[40%] h-8 px-1 text-center rounded-lg border bg-indigo-500 cursor-pointer transition-all hover:bg-transparent">
                     <svg class="size-5"><use href="#telegram"></use></svg>
                     <span>alisolinejad@</span>
-                </div>
-                <div class=" shrink flex items-center gap-2 justify-center basis-[40%] h-8 px-1 text-center rounded-lg border bg-violet-600 cursor-pointer transition-all hover:bg-transparent">
+                </a>
+                <a href='https://instagram.com/alisolinejad' class=" shrink flex items-center gap-2 justify-center basis-[40%] h-8 px-1 text-center rounded-lg border bg-violet-600 cursor-pointer transition-all hover:bg-transparent">
                     <svg class="size-5"><use href="#instagram"></use></svg>
                     <span>alisolinejad@</span>
-                </div>
-                </div>
+                </a>
+            </div>
             </div>
         </div>
         <hr class="bg-gray-500 my-2">

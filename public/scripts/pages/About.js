@@ -1,6 +1,6 @@
 export default function AboutPage() {
   const container = document.createElement('div');
-  container.className = 'flex flex-col items-center justify-center min-h-screen bg-violet-100 dark:bg-slate-600 p-6';
+  container.className = 'flex flex-col items-center justify-center min-h-screen   p-6';
 
   container.innerHTML = `
     <div class="max-w-5xl w-full bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden mt-24">
