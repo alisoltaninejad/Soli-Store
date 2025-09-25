@@ -1,6 +1,6 @@
 # 🛒 Modern Shop SPA (HTML, Tailwind CSS, JavaScript)
 
-A **Single Page Application (SPA)** e-commerce project built with **HTML**, **Tailwind CSS**, and **Vanilla JavaScript**. This fully modular, responsive store includes dynamic UI features, seamless user interactions, and efficient state handling for a modern shopping experience.
+A **Single Page Application (SPA)** e-commerce project built with `HTML`, `Tailwind CSS`, and `Vanilla JavaScript`. This fully modular, responsive store includes dynamic UI features, seamless user interactions, and efficient state handling for a modern shopping experience.
 
 ## ✨ Features
 
@@ -25,3 +25,7 @@ A **Single Page Application (SPA)** e-commerce project built with **HTML**, **Ta
 - 📱 **Mobile drawer menu** with smooth transitions
 - 🔄 **Loading indicator** on page/data change
 - ⬆️ **Scroll-to-top button** in footer for smooth UX
+  
+---
+### clone and make sure you are at `Soli-Store` folder then use this command to run:
+```npm run dev```
