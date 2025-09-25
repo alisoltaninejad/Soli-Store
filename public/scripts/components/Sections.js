@@ -12,28 +12,28 @@ export default class Sections {
       <section class="container mt-34 w-[80%] m-auto space-y-30">
         <!-- banners -->
         <div class="grid gap-4 grid-cols-1 md:grid-cols-2 items-center justify-center child:rounded-2xl child:shadow-2xl">
-          <img src="/docs/images/banner-computer.jpg" class="block h-full w-full md:-mt-7" alt="banner">
-          <img src="/docs/images/banner-portable.jpg" alt="banner">
-          <img src="/docs/images/banner-playstation.jpg" class="md:-mt-7" alt="banner">
-          <img src="/docs/images/banner-xbox.jpg" alt="banner">
+          <img src="/public/images/banner-computer.jpg" class="block h-full w-full md:-mt-7" alt="banner">
+          <img src="/public/images/banner-portable.jpg" alt="banner">
+          <img src="/public/images/banner-playstation.jpg" class="md:-mt-7" alt="banner">
+          <img src="/public/images/banner-xbox.jpg" alt="banner">
         </div>
 
         <!-- categories -->
         <div class="grid gap-14 grid-cols-2 md:grid-cols-4 items-center justify-center dark:text-white">
           <figure>
-            <a  href="/categories/watches" data-link><img src="/docs/images/category-man-watches.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-blue-200" alt="category"></a>
+            <a  href="/categories/watches" data-link><img src="/public/images/category-man-watches.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-blue-200" alt="category"></a>
             <a  href="/categories/watches" data-link class="block text-lg md:text-xl text-center mt-6">ساعت</a>
           </figure>
           <figure>
-            <a  href="/categories/mobile-accessories" data-link><img src="/docs/images/category-mobile-accessories.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
+            <a  href="/categories/mobile-accessories" data-link><img src="/public/images/category-mobile-accessories.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
             <a  href="/categories/mobile-accessories" data-link class="block text-lg md:text-xl text-center mt-6">لوازم جانبی</a>
           </figure>
           <figure>
-            <a href="/categories/laptops" data-link><img src="/docs/images/category-laptops.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
+            <a href="/categories/laptops" data-link><img src="/public/images/category-laptops.jpg" class="rounded-full shadow-xl dark:shadow-gray-800" alt="category"></a>
             <a href="/categories/laptops" data-link class="block text-lg md:text-xl text-center mt-6">لپ تاپ</a>
           </figure>
           <figure>
-            <a  href="/categories/phones" data-link><img src="/docs/images/category-tablets.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-violet-200" alt="category"></a>
+            <a  href="/categories/phones" data-link><img src="/public/images/category-tablets.png" class="rounded-full shadow-xl dark:shadow-gray-800 bg-violet-200" alt="category"></a>
             <a  href="/categories/phones" data-link class="block text-lg md:text-xl text-center mt-6">تبلت و موبایل</a>
           </figure>
         </div>
@@ -44,7 +44,7 @@ export default class Sections {
         <!-- call order -->
         <div class="flex flex-col md:flex-row dark:text-white">
           <div class="basis-[30%] rounded-xs overflow-hidden">
-            <img src="/docs/images/category-smaartphone.jpg" class="h-full w-full" alt="smartphone">
+            <img src="/public/images/category-smaartphone.jpg" class="h-full w-full" alt="smartphone">
           </div>
           <div class="basis-[70%] flex flex-col justify-evenly shrink md:px-8 mt-8 md:mt-0">
             <h2 class="text-2xl md:text-3xl font-AlibabaBold">بهترین لوازم دیجیتال</h2>
@@ -60,11 +60,11 @@ export default class Sections {
         <!-- widgets -->
         <div class="flex flex-col sm:flex-row justify-evenly items-center gap-6 ">
           <div class="w-full flex gap-4 items-center justify-baseline md:justify-center dark:bg-gray-500 p-4 dark:text-white rounded-2xl">
-            <img src="/docs/images/svgs/express-delivery.svg" alt="delivery icon" class="size-14 lg:size-20">
+            <img src="/public/images/svgs/express-delivery.svg" alt="delivery icon" class="size-14 lg:size-20">
             <h5>ارسال سریع به سراسر کشور</h5>
           </div>
           <div class="w-full flex gap-4 items-center justify-baseline md:justify-center dark:bg-gray-500 p-4 dark:text-white rounded-2xl">
-            <img src="/docs/images/svgs/support.svg" alt="support icon" class="size-14 lg:size-20">
+            <img src="/public/images/svgs/support.svg" alt="support icon" class="size-14 lg:size-20">
             <h5>پشتیبانی 24 ساعته</h5>
           </div>
         </div>

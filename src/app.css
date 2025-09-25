@@ -7,42 +7,42 @@
   font-family: "Dana";
   font-weight: 400;
   font-display: swap;
-  src: url("../docs/fonts/Dana.ttf") format("truetype");
+  src: url("../public/fonts/Dana.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Dana Medium";
   font-weight: 500;
   font-display: swap;
-  src: url("../docs/fonts/Dana-Medium.ttf") format("truetype");
+  src: url("../public/fonts/Dana-Medium.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Dana DemiBold";
   font-weight: 600;
   font-display: swap;
-  src: url("../docs/fonts/Dana-DemiBold.ttf") format("truetype");
+  src: url("../public/fonts/Dana-DemiBold.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Alibaba Light";
   font-weight: 100;
   font-display: swap;
-  src: url("../docs/fonts/Alibaba-Light.otf") format("opentype");
+  src: url("../public/fonts/Alibaba-Light.otf") format("opentype");
 }
 
 @font-face {
   font-family: "Alibaba Medium";
   font-weight: 300;
   font-display: swap;
-  src: url("../docs/fonts/Alibaba-Regular.otf") format("opentype");
+  src: url("../public/fonts/Alibaba-Regular.otf") format("opentype");
 }
 
 @font-face {
   font-family: "Alibaba Bold";
   font-weight: 900;
   font-display: swap;
-  src: url("../docs/fonts/Alibaba-Bold.otf") format("opentype");
+  src: url("../public/fonts/Alibaba-Bold.otf") format("opentype");
 }
 
 .container {
