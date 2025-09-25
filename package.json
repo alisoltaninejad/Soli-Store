@@ -4,7 +4,12 @@
     "sweetalert2": "^11.20.0",
     "tailwindcss": "^4.1.4"
   },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
   "scripts": {
-    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./docs/styles/output.css --watch"
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./docs/styles/output.css --watch",
+    "preview": "npx live-server docs --port=3000 --open --mount=/:/docs",
+    "start": "npx concurrently \"npm run dev\" \"npm run preview\""
   }
 }
