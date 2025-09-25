@@ -1,5 +1,5 @@
 import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2/+esm";
-import CartStore from "/public/scripts/components/CartStore.js";
+import CartStore from "/docs/scripts/components/CartStore.js";
 
 export default class CategoryPage {
   constructor(category) {

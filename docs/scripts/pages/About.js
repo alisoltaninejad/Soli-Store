@@ -8,7 +8,7 @@ export default function AboutPage() {
         <!-- Image Section -->
         <div class="flex-shrink-0">
           <img 
-            src="public/images/AliSoltani.jpg"
+            src="docs/images/AliSoltani.jpg"
             alt="about us"
             class="w-48 h-48 rounded-full object-cover border-4 border-violet-300 dark:border-violet-600"
           />

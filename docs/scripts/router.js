@@ -9,8 +9,8 @@ import CategoryPage from "./pages/CategoryPage.js";
 // تعریف مسیرهای ثابت
 const routes = {
   "/": HomePage,
-  "/public/": HomePage,
-  "/public/index.html": HomePage,
+  "/docs/": HomePage,
+  "/docs/index.html": HomePage,
   "/blog": BlogPage,
   "/about": AboutPage,
   "/contact": ContactPage,

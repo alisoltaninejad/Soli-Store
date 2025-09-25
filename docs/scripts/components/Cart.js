@@ -57,7 +57,7 @@ export default class Cart {
                 item.id
               }">
                   <img src="${
-                    item.thumbnail || "/public/images/default.png"
+                    item.thumbnail || "/docs/images/default.png"
                   }" class="w-[120px] h-[130px] object-contain" alt="product">
                   <div class="flex flex-col items-center justify-between w-full h-full ml-4">
                       <div class='w-full text-center'>
