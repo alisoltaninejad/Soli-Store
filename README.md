@@ -28,10 +28,10 @@ A **Single Page Application (SPA)** e-commerce project built with `HTML`, `Tailw
   
 ---
 ## 🤞 Clone and Use:
-#### -Make sure you are at `Soli-Store` folder 
-#### -run this commands:
+>#### Make sure you are at `Soli-Store` folder 
+> run this commands:
 ```
 npm i
 npm run dev
 ```
-#### -Go live with Live Server and open public folder
+> #### Go live with Live Server and open public folder
