@@ -27,7 +27,11 @@ A **Single Page Application (SPA)** e-commerce project built with `HTML`, `Tailw
 - ⬆️ **Scroll-to-top button** in footer for smooth UX
   
 ---
-## 🤞 Clone and Use:
+## 💻 Installation:
+>#### Clone the project with:
+```
+git clone https://github.com/alisoltaninejad/Soli-Store
+```
 >#### Make sure you are at `Soli-Store` folder 
 > run this commands:
 ```
