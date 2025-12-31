@@ -5,7 +5,9 @@ export default class HomeSection {
   
     render() {
       return `
-        <section class="home h-[200px] xs:h-auto md:h-screen xs:aspect-[2/1] md:aspect-auto bg-[image:var(--bg-desktop)] bg-no-repeat bg-[center_top] bg-cover overflow-hidden clippath" >
+        <section
+        id='home'
+        class="home h-[200px] xs:h-auto md:h-screen xs:aspect-[2/1] md:aspect-auto  bg-no-repeat bg-[center_top] bg-cover overflow-hidden clippath" >
           <div class="container mx-auto px-4 md:px-2 h-full flex justify-end items-center">
             <div class="text-white w-[50%] mt-[10%]">
               <h2 class="font-Dana text-xl md:text-4xl lg:text-5xl mb-0.5 md:mb-2 ">بهترین تجهیزات گیمینگ</h2>

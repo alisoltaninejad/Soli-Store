@@ -1,8 +1,10 @@
 :root {
-  --bg-desktop: url('../images/bg.jpg');
+  --bg-desktop: url('../public/images/bg.jpg');
 
 }
-
+#home{
+  background-image: var(--bg-desktop)
+}
 @font-face {
   font-family: "Dana";
   font-weight: 400;
